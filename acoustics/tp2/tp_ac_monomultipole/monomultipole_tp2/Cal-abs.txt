@@ -1,0 +1,13 @@
+[Calibrations absolues]
+Version = "4.5"
+Nom du projet = "monomultipole_tp2"
+Date = "02/02/2015"
+Opérateur = ""
+
+[Unités]
+micro = "mV/Pa"
+hp = "mV/V"
+
+[Sensibilités]
+micro = 50.900000
+hp = 1000.000000

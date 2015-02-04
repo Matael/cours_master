@@ -1,0 +1,17 @@
+channel name	cDAQ10Mod1/ai0
+description	
+x-axis units	Frequency-CB (Hz)
+spectrum type	Power [Magnitude^2]
+linear/dB	linear
+window	1
+window size	25600
+FFT size	25600
+engineering units	Pa
+custom label	Pa
+dB reference	2.000000E-5
+peak units	rms
+weighting filter	Linear
+spectral density?	False
+unit label	Pa^2 rms|SV Units|dB rms ref 20.0E-6 Pa
+spectrum skewed?	False
+complimentary spectrum units	none

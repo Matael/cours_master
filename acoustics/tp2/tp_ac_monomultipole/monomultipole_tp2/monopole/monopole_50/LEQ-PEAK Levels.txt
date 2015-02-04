@@ -1,0 +1,3 @@
+micro(dB Lin)	First Raw = LEQ ; Second Raw = PEAK
+41.017650998002743E+0
+59.458080570213269E+0

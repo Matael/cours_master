@@ -1,0 +1,45 @@
+[GENERAL INFORMATIONS]
+Project Name = "monomultipole_tp2"
+Measurement Name = "oblique_85"
+Date = "02/02/2015"
+Operator = ""
+Comments = ""
+
+[MEASUREMENT DEFINITION]
+Power Spectrum = TRUE
+PSD = FALSE
+Weighting = 0
+Octave filter = FALSE
+FRF ? = TRUE
+Estimator = 2
+Reference Channel = 1
+
+[ACQUISITION FREQUENCY PARAMETERS]
+Min Frequency (Hz) = 49
+Max Frequency (Hz) = 500
+Resolution (Hz) = 1.000000
+Sample Rate (Hz) = 25600.000000
+Window = 1
+
+[AVERAGE PARAMETERS]
+Averaging mode = 2
+Weighting mode = 0
+Nb of averages = 1
+Linear mode = 0
+
+[TRIGGER CONFIGURATION]
+Trigger ? = FALSE
+
+[GENERATION]
+Signal Source = 3
+Min Frequency (Hz) = 49
+Max Frequency (Hz) = 500
+Sample Rate (Hz) = 25600.000000
+Duration = 1.000000
+Progress = "Lin"
+Nb of averages = 2
+Nb of null points = 1.000000
+% Pre Lag = 5
+% Post Lag = 5
+Level (V) = 0.200000
+Synchronization = 1.000000

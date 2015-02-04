@@ -1,0 +1,6 @@
+[Général]
+Version="4.5"
+Nom du projet="monomultipole_tp2"
+Date="02/02/2015"
+Auteur=""
+Commentaire=""
