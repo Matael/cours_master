@@ -31,6 +31,7 @@ seek_freq = 0;
 if (nargin>2)
 	seek_freq = 1;
 	path = [base_path folder '/' folder '_' num2str(angles(1)) '/' filename];
+	disp(path)
 	fid = fopen(path);
 	fgetl(fid);
 	format = '%e %e %e';
@@ -65,6 +66,7 @@ end
 for angle_id=1:length(angles)
 
 	nb = angles(angle_id);
+	% print(['[DEBUG] angle=' num2str(nb)])
 
 	path = [base_path folder '/' folder '_' num2str(nb) '/' filename];
 
