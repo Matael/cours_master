@@ -26,8 +26,8 @@ close all;
 
 %graphics_toolkit('gnuplot');
 
-filename = 'data/Impedance_baffle_q4_try2.txt';
-% filename = 'data/Impedance_sansbaffle_q4_try1.txt';
+% filename = 'data/Impedance_baffle_q4_try2.txt';
+filename = 'data/Impedance_sansbaffle_q4_try1.txt';
 
 
 
@@ -71,11 +71,12 @@ figure;
 hold on;
 semilogy(k.*a, Re_Zray, 'r');
 semilogy(k.*a, Im_Zray, 'b');
-semilogy(k.*a, real(Z_ray_struve),'ro',k.*a,imag(Z_ray_struve),'bo');
-semilogy(k.*a, real(Z_ray_approx_BF),'r--',k.*a,imag(Z_ray_approx_BF),'b--');
+semilogy(k.*a, real(Z_ray_struve),'k--', 'LineWidth', 2);
+semilogy(k.*a, imag(Z_ray_struve),'k:',  'LineWidth', 2);
+% semilogy(k.*a, real(Z_ray_approx_BF),'r--',k.*a,imag(Z_ray_approx_BF),'b--');
 
 grid on;
-legend('Re\{Z_{ray}\}', 'Im\{Z_{ray}\}')
+legend('Re\{Z_{ray}\}', 'Im\{Z_{ray}\}', 'Modele (real)', 'Modele (imag)');
 title('Z_{ray}')
 xlabel('k a');
 
