@@ -53,7 +53,7 @@ for i=1:length(folders)
 	for f=freqs
 		figure(1);
 		[f_v, vals] = extract_freq_values(folder, angle, f);
-		cplx_frf = vals(:,1) + j*vals(:,2)
+		cplx_frf = vals(:,1) + j*vals(:,2);
 		cplx_frf = abs(cplx_frf);
 		cplx_frf = 20*log10(cplx_frf/cplx_frf(1));
 
