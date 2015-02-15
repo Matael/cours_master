@@ -1,0 +1,35 @@
+[GENERAL INFORMATIONS]
+Project Name = "Projet"
+Measurement Name = "H_refmic1_2hp_outofphase"
+Date = "10/02/2015"
+Operator = ""
+Comments = "chirp de 900 à 2200"
+
+[MEASUREMENT DEFINITION]
+Power Spectrum = TRUE
+PSD = FALSE
+Weighting = 0
+Octave filter = FALSE
+FRF ? = TRUE
+Estimator = 2
+Reference Channel = 0
+
+[ACQUISITION FREQUENCY PARAMETERS]
+Min Frequency (Hz) = 900
+Max Frequency (Hz) = 2200
+Resolution (Hz) = 1.000000
+Sample Rate (Hz) = 25600.000000
+Window = 1
+
+[AVERAGE PARAMETERS]
+Averaging mode = 2
+Weighting mode = 0
+Nb of averages = 10
+Linear mode = 0
+
+[TRIGGER CONFIGURATION]
+Trigger ? = FALSE
+
+[GENERATION]
+Signal Source = 0
+Period of the acquisition loop (ms) = 3000.000000
