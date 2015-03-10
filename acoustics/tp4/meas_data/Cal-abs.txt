@@ -1,0 +1,13 @@
+[Calibrations absolues]
+Version = "4.5"
+Nom du projet = "tp_diffraction"
+Date = "09/03/2015"
+Opérateur = ""
+
+[Unités]
+micro = "mV/Pa"
+hp = "mV/V"
+
+[Sensibilités]
+micro = 1000.000000
+hp = 1000.000000

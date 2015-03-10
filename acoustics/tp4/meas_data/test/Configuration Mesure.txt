@@ -1,0 +1,11 @@
+[INFOS GENERALES]
+Nom du Projet = "tp_diffraction"
+Nom de la mesure = "test"
+Date = "09/03/2015"
+Opérateur = ""
+Commentaires = ""
+
+[TYPE MESURE]
+Type = "Temporel"
+Fe (Hz) = 51200.000000
+Durée (s) = 10.000000

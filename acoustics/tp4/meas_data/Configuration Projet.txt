@@ -1,0 +1,6 @@
+[Général]
+Version="4.5"
+Nom du projet="tp_diffraction"
+Date="09/03/2015"
+Auteur=""
+Commentaire=""
