@@ -1,0 +1,179 @@
+%
+% comparison.m
+%
+% Copyright (C) 2015 Mathieu Gaborit (matael) <mathieu@matael.org>
+%
+%
+% Distributed under WTFPL terms
+%
+%            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+%                    Version 2, December 2004
+%
+% Copyright (C) 2004 Sam Hocevar <sam@hocevar.net>
+%
+% Everyone is permitted to copy and distribute verbatim or modified
+% copies of this license document, and changing it is allowed as long
+% as the name is changed.
+%
+%            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+%   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+%
+%  0. You just DO WHAT THE FUCK YOU WANT TO.
+%
+
+clear all;
+close all;
+% clc; % comment out to avoid clearance
+
+theta_vect = (0:15:180);
+frequency_offset = 20; % Hz
+foi_vect = [500 1700 3000]; % Frequencies of interest
+foi_idx_vect = foi_vect + frequency_offset;
+folder = 'meas_data';
+print_folder = 'meas_figs';
+prefix = 'p_';
+filename = 'FRF_RealImag.txt';
+format = '%e %e %e';
+
+ratii_for_foi = zeros(length(theta_vect), 3);
+
+
+gamma=1.4;
+R=8.31;
+M_mol=29e-3;
+T=293.15;
+c0=sqrt(gamma.*R.*T./M_mol);
+
+P0=1; %amplitude of the incident plane wave
+a=3.2e-2; %radius of the cylinder
+r=50e-2; %radial coordinate of the observation point
+N=100;%number of acoustic modes considered
+
+
+for theta_idx=1:length(theta_vect)
+    % cyl => cylinder
+    % ff => freefield
+    
+    theta = theta_vect(theta_idx);
+    % with cylinder
+    path = [folder '/' prefix 'cyl_' num2str(theta) '/' filename]; 
+    fid = fopen(path);
+    fgetl(fid);
+    data_cyl = fscanf(fid, format, [3 inf]);
+    data_cyl = data_cyl';
+    
+    % without cylinder
+    path = [folder '/' prefix '_' num2str(theta) '/' filename]; 
+    fid = fopen(path);
+    fgetl(fid);
+    data_ff = fscanf(fid, format, [3 inf]);
+    data_ff = data_ff';
+    
+    p_cyl = data_cyl(:,2)+data_cyl(:,3)*1i;
+    p_ff = data_ff(:,2)+data_ff(:,3)*1i;
+    
+    ratio = p_cyl./p_ff;
+
+    for idx=1:length(foi_idx_vect)
+        ratii_for_foi(theta_idx, idx) = ratio(foi_idx_vect(idx));
+    end
+    
+    f = data_ff(:,1);
+    
+    b = fir1(50, 0.04);
+    ratio = filter(b,1,ratio);
+    
+    
+	%%%%%%%%%%%%%%%%%%%%% SIMUL %%%%%%%%%%%%%%%%%%%%%%%%
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%% calculation of the acoustic field %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	theta_sim = theta*pi/180;
+
+	omega = 2*pi*f;
+	k = omega/c0;
+
+    p_i_0=P0.*besselj(0,k.*r);
+    p_i=p_i_0;
+    B0=-P0.*besselj(-1,k.*a)./besselh(-1,2,k.*a);
+    p_r_0=B0.*besselh(0,2,k.*r);
+    p_r=p_r_0;
+    n=1;
+    while n<=N,
+       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+       %%%%%%%%%%%%%%%%%%%% incident wave %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+       robert=2.*P0.*i.^n.*besselj(n,k.*r).*cos(n.*theta_sim);
+       p_i=p_i+robert;
+       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+       %%%%%%%%%%%%%%%%%%%% diffracted wave %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+       Bn=-2.*P0.*i.^n.*(besselj(n-1,k.*a)-n./(k.*a).*besselj(n,k.*a))./...
+           (besselh(n-1,2,k.*a)-n./(k.*a).*besselh(n,2,k.*a));
+       bernard=Bn.*besselh(n,2,k.*r).*cos(n.*theta_sim);
+       p_r=p_r+bernard;
+
+       n=n+1;
+    end
+
+    p_tot=p_i+p_r;
+
+
+    
+    % figures
+    figure(1); % ratio % freq
+    hold off;
+    plot(f, (abs(ratio)), 'b', 'LineWidth', 2);
+	hold on;
+    plot(f, (abs(p_tot)), 'r', 'LineWidth', 2);
+    grid on;
+    xlim([300 4000])
+    title(['p_{tot} | theta0 = ' num2str(theta) 'deg'])
+    print('-dpng', [print_folder '/ratii/p_' num2str(theta) '.png']);    
+end
+
+theta_sim=linspace(0,pi,200); %variable azimuthal angle of the observation point
+
+for idx=1:length(foi_vect)
+
+	f = foi_vect(idx);
+	omega=2.*pi.*f; %corresponding angular frequency
+	k=omega./c0; %wave number
+	%%%%%%%%%%%%%%%%%%% SIMUL %%%%%%%%%%%%%%%%
+	p_i_0=P0.*besselj(0,k.*r).*ones(size(theta_sim));
+	p_i=p_i_0;
+	B0=-P0.*besselj(-1,k.*a)./besselh(-1,2,k.*a);
+	p_r_0=B0.*besselh(0,2,k.*r).*ones(size(theta_sim));
+	p_r=p_r_0;
+	n=1;
+	while n<=N,
+	   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	   %%%%%%%%%%%%%%%%%%%% incident wave %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	   robert=2.*P0.*i.^n.*besselj(n,k.*r).*cos(n.*theta_sim);
+	   p_i=p_i+robert;
+	   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	   %%%%%%%%%%%%%%%%%%%% diffracted wave %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	   Bn=-2.*P0.*i.^n.*(besselj(n-1,k.*a)-n./(k.*a).*besselj(n,k.*a))./...
+		   (besselh(n-1,2,k.*a)-n./(k.*a).*besselh(n,2,k.*a));
+	   bernard=Bn.*besselh(n,2,k.*r).*cos(n.*theta_sim);
+	   p_r=p_r+bernard;
+	   
+	   n=n+1;
+	end
+
+	p_tot=p_i+p_r;
+
+	%%%%%%%%%%%%%%% END SIMUL %%%%%%%%%%%%%%%%%
+    figure;
+    plot(theta_vect, abs(ratii_for_foi(:,idx)));
+	hold on;
+    plot(theta_sim*180/pi, abs(p_tot), 'r');
+    title(['f=' num2str(foi_vect(idx) - frequency_offset)]);
+    print('-dpng', [print_folder '/alltheta_' num2str(foi_vect(idx)) '.png'])
+end
+
+

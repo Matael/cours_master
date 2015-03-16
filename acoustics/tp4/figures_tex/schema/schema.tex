@@ -1,0 +1,33 @@
+\documentclass[tikz]{standalone}
+\begin{document}
+\usetikzlibrary{patterns}
+\begin{tikzpicture}[>=stealth]
+
+
+	\def\r{2}
+	\def\Mr{3.5}
+
+	% circle
+	\draw[thick] (0,0) circle (\r);
+	\node (0,0) {$\bullet$} node[right] {$O$};
+	\draw[<->] (0,0) -- (115:\r) node[midway,right] {$a$};
+
+	% axis
+	\draw[->, dashed] (0,0) -- (-5,0) node[above] {$x$};
+	\draw[->, dashed] (0,0) -- (0,-4) node[right] {$y$};
+
+	% M
+	\draw[dashed] (0,0) -- (205:\Mr) node {$\bullet$} node[above] {$M$} node[midway, below] {$r$};
+	\draw[dashed,->] (-\r-.5,0) arc (180:205:\r+.5) node[midway,left] {$\theta$};
+
+	% wave front
+	\draw[thick, ->] (-6.5,0) -- ++(1,0);
+	\draw[thick] (-5.9,-.3) -- ++(0,.6);
+	\draw[thick] (-6,---.3) -- ++(0,.6) node[above] {$\overrightarrow{k}$};
+
+
+
+
+\end{tikzpicture}
+
+\end{document}

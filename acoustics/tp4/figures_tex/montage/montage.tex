@@ -1,0 +1,60 @@
+\documentclass[tikz]{standalone}
+\begin{document}
+\usetikzlibrary{patterns}
+\begin{tikzpicture}[>=stealth]
+
+
+	\def\r{.3};
+	\def\M{1.5};
+
+	% hp
+	\draw (0,-.3) rectangle (.2,.3);
+	\draw (.2,-.3) -- ++(.2,-.2) -- ++(0,1) -- ++(-.2,-.2);
+
+	% wavefront
+	\draw[->] (.8,0) -- ++(.7,0);
+	\draw (1.1,-.2) -- ++(0,.4) node[above] {$\overrightarrow{k}$};
+	\draw (1.2,-.2) -- ++(0,.4);
+
+	% cylinder
+	\draw (3,-2) rectangle (3+2*\r,3);
+	\draw[dashed,<-] (3+\r,-4) node[right] {$z$} -- ++(0,8); % z axis
+	\draw[dashed, ->] (4,0) -- ++(-2,0) node[above] {$x$};
+	\draw[<->] (3+\r, 3.5) -- ++(\r,0) node[midway,above] {$a$};
+	\draw[dashed] (3+2*\r,3) -- ++(0,.7);
+
+	% absorbing material
+	\draw[pattern=north east lines] (0,-3) rectangle (6,-2.5);
+	\foreach \i in {1,...,20} \draw (\i*.3,-3) -- (.3*\i-.3,-3.2);
+
+
+
+	% M point
+	\draw (3+\r+\M,0) node {$\bullet$} node[above]  {$M$};
+
+	% above-viewed
+	\begin{scope}[shift={(7,0)}]
+		% hp
+		\draw (0,-.3) rectangle (.2,.3);
+		\draw (.2,-.3) -- ++(.2,-.2) -- ++(0,1) -- ++(-.2,-.2);
+
+		% wavefront
+		\draw[->] (.8,0) -- ++(.7,0);
+		\draw (1.1,-.2) -- ++(0,.4) node[above] {$\overrightarrow{k}$};
+		\draw (1.2,-.2) -- ++(0,.4);
+
+		\draw (3+\r,0) circle (\r);
+		\draw[dashed,<-] (3+\r,-4) node[right] {$y$} -- (\r+3,2); % z axis
+		\draw[dashed, ->] (4,0) -- ++(-2,0) node[near end, above] {$x$};
+
+		% M point
+		\draw[dotted, thick] (3+\r,0) circle (\M);
+		\draw[dashed] (3+\r,0) -- ++(37:\M) node {$\bullet$} node[near end,left] {$r$} node[above] {$M$};
+
+
+
+	\end{scope}
+
+\end{tikzpicture}
+
+\end{document}

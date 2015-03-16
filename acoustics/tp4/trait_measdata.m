@@ -7,7 +7,7 @@ frequency_offset = 20; % Hz
 foi_vect = [500 1700 3000]; % Frequencies of interest
 foi_idx_vect = foi_vect + frequency_offset;
 folder = 'meas_data';
-print_folder = 'meas_figs'
+print_folder = 'meas_figs';
 prefix = 'p_';
 filename = 'FRF_RealImag.txt';
 format = '%e %e %e';
@@ -33,8 +33,8 @@ for theta_idx=1:length(theta_vect)
     data_ff = fscanf(fid, format, [3 inf]);
     data_ff = data_ff';
     
-    p_cyl = data_cyl(:,2)+data_cyl(:,3)*i;
-    p_ff = data_ff(:,2)+data_ff(:,3)*i;
+    p_cyl = data_cyl(:,2)+data_cyl(:,3)*1i;
+    p_ff = data_ff(:,2)+data_ff(:,3)*1i;
     
     ratio = p_cyl./p_ff;
 
@@ -53,7 +53,7 @@ for theta_idx=1:length(theta_vect)
     plot(f, (abs(ratio)), 'b', 'LineWidth', 2);
     grid on;
     xlim([300 4000])
-    title(['p_{tot} | \theta_0 = ' num2str(theta) '°'])
+    title(['p_{tot} | theta0 = ' num2str(theta) 'deg'])
     print('-dpng', [print_folder '/ratii/p_' num2str(theta) '.png']);    
 end
 
