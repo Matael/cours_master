@@ -1,0 +1,7 @@
+These are 2 files :
+
+- beamer.tex uses a custom theme (named "m") that can be found here : https://github.com/matze/mtheme . It also uses a
+  custom font, Mozilla Fira Sans which can be downloaded here : https://github.com/mozilla/Fira
+  You might not be able to compile it without xelatex and the 2 previously cited packages.
+- beamer_singapore.tex uses the Singapore theme (part of the standard library) and should compile directly using latex
+  or pdflatex
