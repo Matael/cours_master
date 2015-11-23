@@ -1,0 +1,292 @@
+%
+% bf_traitement
+%
+% TP Formation de voies
+% Jean-Claude Pascal et Jean-Hugh Thomas
+%
+
+clear all;
+close all;
+clc;
+
+c = 340; % m.s^-1
+
+%-- détermination de la méthode : 'bartlet','capon','music'
+bfmethod = 'music';
+
+disp(' '), disp(['-- Traitement avec la méthode ',bfmethod]), disp(' ')
+
+%-- construction du path
+rootpath = cd;
+addpath([rootpath '\Bf_bib']),
+
+%==============================================================================
+% Lecture de la matrice interspectrale  (code complet)
+%------------------------------------------------------------------------------
+
+%-- Sélection du fichier hdf
+%
+FilterSpec = {'*.hdf','hdf file'};
+[HDFFileName,HDFPathName] = uigetfile(FilterSpec,'load an hdf spectral file');
+        
+if ischar(HDFFileName)
+    filename = [HDFPathName HDFFileName];
+else
+    return,
+end
+
+%-- Visualisation du spectre moyen sur les microphones de l'antenne
+%
+[avspect,freqvect,axename] = HDFinterface('averageddata',filename);   
+HDFinterface('averageddata',filename);
+
+%-- Sélection de la fréquence de traitement
+%
+disp(' '), disp('Sélection de la fréquence'),
+freq = input('     entrer la fréquence à traiter (en Hz) : ');
+[freq,ifreq] = nearest(freqvect,freq);
+
+%-- Chargement de la matrice interspectrale
+%
+[Refarray,axevector,axeorder] = HDFfileAScontrol('getdata',filename,'Refarray',ifreq,':',1);
+Gpp = TransRefarray('vec2mat',Refarray,'single');     
+Gpp = conj(Gpp);
+
+% INFO : Gpp = Gpp'; dans Matlab, Gpp' représente la transposée hermitienne de la matrice complexe Gpp
+%        la matrice Gpp est une matrice carrée [M M] (M nombre de microphones)
+
+%==============================================================================
+% Lecture des coordonnées des points de l'antenne (code complet)
+%------------------------------------------------------------------------------
+%
+% INFO
+% micropnts est une matrice [M 3] où M est le nombre de microphones de l'antenne
+% micropnts(:,1) est le vecteur colonne des coordonnées x
+% micropnts(:,2) est le vecteur colonne des coordonnées y
+% micropnts(:,3) est le vecteur colonne des coordonnées z (normalement nul car le 
+% plan de l'antenne est en z = 0)
+
+[micropnts,coordsys,arraysys] = HDFinterface('micropnts',filename);
+
+%==============================================================================
+% Détermination du plan de représentation  (code à compléter : donner des valeurs) 
+%------------------------------------------------------------------------------
+
+% INFO
+% Le plan de représentation est parallèle à celui de l'antenne Pour définir les points 
+% où seront estimées les sources il faut fournir les informations suivantes :
+%  Nx, Ny -> le nombre de points en x et y
+%  dist   -> la distance du plan de représentation à celui de l'antenne
+%  Xmin Xmax Ymin Ymax -> les limites du plan de représentation 
+% L'origine du repère est située sur l'axe de l'antenne. Par exemple :
+Nx = 40;
+Ny = 40;
+dist = 1.5;
+Xmin = -1;
+Xmax = 1;
+Ymin = -1;
+Ymax = 1;
+
+%-- construction du maillage sur le plan de représentation
+%
+x = linspace(Xmin,Xmax,Nx);
+y = linspace(Ymin,Ymax,Ny);
+[Xmat,Ymat] = meshgrid(x,y);
+
+%-- vecteur [Np 3] des positions des sources (plan de source)
+Np = Nx*Ny;
+srcpnts = [Xmat(:) Ymat(:) -dist*ones(Np,1)];
+
+%==============================================================================
+% Pré-traitement selon la méthode choisie  (code à compléter) 
+%------------------------------------------------------------------------------
+if strcmpi(bfmethod,'capon')
+    disp('   :: pré-traitement pour la méthode de Capon'),
+    % INFO
+    % le traitement consiste ici à inverser la matrice Gpp
+    Gpp_inv = Gpp^-1;
+    
+elseif strcmpi(bfmethod,'music')
+    disp('   :: pré-traitement pour la méthode MUSIC'),
+    % INFO
+    % le traitement consiste ici à décomposer la matrice Gpp en utilisant la fonction svd
+    % de Matlab [U,S,V] = svd(Gpp)  (dans ce cas particulier V = U')
+
+    [U,Sigma2,V] = svd(Gpp);
+
+    % choix de valeurs pour le sous-espace :
+    stem(1:length(diag(Sigma2)), diag(Sigma2));
+    disp('Selectionnez le seuil');
+    [gui_x,gui_y] = ginput(1);
+    r = floor(gui_x);
+
+end    
+    
+%==============================================================================
+% Boucle de traitement pour chacun des points sources  (code à compléter) 
+%------------------------------------------------------------------------------
+hw = waitbar(0,['traitement méthode ',bfmethod,' ...']);
+S = zeros(Np,1);
+
+for ii=1:Np
+    
+    waitbar(ii/Np,hw);
+    
+    %-- vecteur [1 3] des coordonnées du point source
+    coorsrc = srcpnts(ii,:);
+    
+    %--------------------------------------------------------------------------
+    % Calcul des distances 
+    % calcul du vecteur R [M,1] des distance entre chaque microphone et le point 
+    % source
+    %--------------------------------------------------------------------------
+    %sqrt( % on prend la racine carrée de chaque élement du vecteur
+    % sum( % on fait la somme dans chaque ligne (voir ,2) à la fin) (somme
+    %      %des différences des coordonnées
+    %  (micropnts -                              % (x_mic - x_source)
+    %    repmat(coorsrc,length(micropnts),1)     % on répète les coordonées
+    %                                            % de la source pour que ça 
+    %                                            % corresponde à la bonne taille de matrice
+    %  ).^2  % (x_mic-x_source)^2
+    % ,2)
+    %)
+    R = sqrt(sum((micropnts - repmat(coorsrc,length(micropnts),1)).^2,2));
+    
+    %--------------------------------------------------------------------------
+    % Calcul du vecteur h [M,1] représentant les fonctions de transfert entre 
+    % les microphones et le point source (Eqs. 2.2 et 2.3)
+    %--------------------------------------------------------------------------
+    
+    k = 2*pi*freq/c;
+    hi = exp(-j*k*R)./(4*pi*R);
+    
+    %--------------------------------------------------------------------------
+    % Calcul du vecteur de pilotage selon la méthode 
+    % La méthode MUSIC n'est pas concernée par cette phase
+    %--------------------------------------------------------------------------
+
+    if strcmpi(bfmethod,'bartlet')
+        % INFO
+        % voir Eq. 3.7
+    
+        wi = 1/(hi'*hi)*hi;
+
+    elseif strcmpi(bfmethod,'capon')
+        % voir Eq. 5.5
+    
+        wi = 1/(hi'*Gpp_inv*hi)*(Gpp_inv*hi);
+
+
+    end    
+    
+    %--------------------------------------------------------------------------
+    % Calcul de la distribution des sources selon les méthodes
+    % les résultats du calcul sont rangés dans un vecteur S [Np 1]
+    %--------------------------------------------------------------------------
+    
+    if strcmpi(bfmethod,'bartlet')
+        % INFO
+        % voir Eq. 2.5
+    
+        S(ii) = wi'*Gpp*wi;
+
+    elseif strcmpi(bfmethod,'capon')
+        % voir Eq. 2.5
+    
+        S(ii) = wi'*Gpp*wi;
+
+    elseif strcmpi(bfmethod,'music')
+%         voir Eq. 6.3
+
+        
+        M = length(micropnts);
+        repeat_size = M - r;
+        mat_hi = repmat(reshape(hi',length(hi),1), 1, repeat_size);
+        mat_uq = U(:,r+1:end);
+        S(ii) = 1/sum(abs(sum(mat_uq.*mat_hi,1)).^2);
+        
+%         somme = 0;
+%         for q=r+1:M
+%             somme = somme + abs(hi'*U(:,q))^2;
+%         end
+%         S(ii) = 1/somme;
+
+        % mat_hi :
+        % +--            --+
+        % |                |
+        % |                |
+        % | ((hi)^H)^T ... |
+        % |                |
+        % |                |
+        % +--            --+
+        % |<-  M-(r+1)   ->|
+    end
+    
+%------------------------------------------------------------------------------
+end % fin de la boucle ii=1:Np
+
+close(hw),
+%------------------------------------------------------------------------------
+
+
+%==============================================================================
+% Reconstitution de la matrice rectangulaire et visualisation (code à compléter) 
+%------------------------------------------------------------------------------
+%
+% INFO
+% selon meshgrid S doit avoir comme dimensions [Ny Nx]
+S = reshape(S,Ny,Nx);
+S = real(S);
+
+%-- utiliser ici éventuellement une interpolation pour avoir un maillage de 
+%   représentation plus fin  (fonction interp2 de Matlab)
+x1 = x;
+y1 = y;
+S1 = S;
+
+% A COMPLETER EVENTUELLEMENT
+
+%-- visualiser la carte des sources en utilisant la fonction imagesc
+%
+titre = ['Méthode ',bfmethod,' - f = ',num2str(freq),' Hz'];
+
+
+
+
+
+reptype = 'lin';  % 'lin' ou 'dB'
+
+if strcmpi(reptype,'lin')
+    
+%-- pour une représentation linéaire
+repstruct.mode = 'mod*';
+repstruct.dynscal = [];   %  -> range of representation of scalar map (used for dB)
+repstruct.maxscal = [];    %  -> max value of scalar map ( [] -> automatic scaling)
+repstruct.stepscal = 10;   %  -> step for rounded max value in automatic scaling
+repstruct.dBref = 1;       %  -> energy reference for dB (A = 10 log [real(Z)/dBref])
+repstruct.title = titre;   %  -> map title string
+repstruct.underrangecolor = [0.9 0.9 0.9]; %  -> underrange color
+repstruct.unit = '';       %  -> string of quantity unit to put under the colorbar
+
+else
+    
+%-- pour une représentation en dB
+Dyn = 15;
+RefdB = 1e-12;
+repstruct.mode = 'dB*';
+repstruct.dynscal = Dyn;   %  -> range of representation of scalar map (used for dB)
+%repstruct.maxscal = dBmax; %  -> max value of scalar map ( [] -> automatic scaling)
+repstruct.maxscal = [];   %  -> max value of scalar map ( [] -> automatic scaling)
+repstruct.stepscal = 1;    %  -> step for rounded max value in automatic scaling
+repstruct.dBref = RefdB;   %  -> energy reference for dB (A = 10 log [real(Z)/dBref])
+repstruct.title = titre;   %  -> map title string
+repstruct.underrangecolor = [0.95 0.95 0.95]; %  -> underrange color
+repstruct.unit = 'dB';     %  -> string of quantity unit to put under the colorbar
+
+end
+
+figure;
+imagesc(x1,y1,S1)
+% figure;
+% ccmap(repstruct,x1,y1,S1),
+% 
