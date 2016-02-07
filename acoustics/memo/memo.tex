@@ -1,0 +1,252 @@
+\documentclass[10pt,landscape,a4paper]{article}
+\usepackage{multicol}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage[landscape]{geometry}
+\usepackage{nicefrac}
+\usepackage{ulem}
+\usepackage{amsmath,amsthm,amsfonts,amssymb}
+\usepackage{color,graphicx,overpic}
+\usepackage{hyperref}
+
+
+% This sets page margins to .5 inch if using letter paper, and to 1cm
+% if using A4 paper. (This probably isn't strictly necessary.)
+% If using another size paper, use default 1cm margins.
+\ifthenelse{\lengthtest { \paperwidth = 11in}}
+    { \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
+    {\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+        {\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+        {\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+    }
+
+% Turn off header and footer
+\pagestyle{empty}
+
+% Redefine section commands to use less space
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%x
+                                {\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+                                {-1explus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%
+                                {\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {1ex plus .2ex}%
+                                {\normalfont\small\bfseries}}
+\makeatother
+
+% Don't print section numbers
+\setcounter{secnumdepth}{0}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
+\newcommand\vv{\mathbf}
+\newcommand\OO{\mathcal{O}}
+\newcommand\JJ{\mathrm{J}}
+\newcommand\dr{\partial}
+\newcommand\grad{\mathrm{\mathbf{grad}}}
+\renewcommand\div{\mathrm{div}}
+\newcommand\rot{\mathrm{\mathbf{rot}}}
+
+
+\begin{document}
+\raggedright
+\footnotesize
+\begin{multicols}{3}
+
+
+% multicol parameters
+% These lengths are set only within the two main columns
+%\setlength{\columnseprule}{0.25pt}
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{2pt}
+
+\begin{center}
+     \Large{\underline{Acoustique en Fluide Réel}} \\
+\end{center}
+
+\section{Relations utiles}
+
+$$\mathrm{Pr} = \frac{\nu}{\kappa}$$
+$$\mu = \nu\rho$$
+$$\kappa = \frac{\lambda}{\rho C_p}$$
+
+\section{Thermodynamique}
+
+Voir pp. 8-9-17-18-21-23.
+
+\subsection{Transformation adiabatique}
+
+$$PV^\gamma = cte$$
+$$c^2 = \frac{\gamma}{\rho\chi_T}$$
+$$C_p = \frac{P_0}{\rho_0T_0}\frac{\gamma}{\gamma-1}$$
+
+\subsection{Gaz Parfait}
+
+$$PV = nRT$$
+$$\alpha = \beta = \nicefrac{1}{T} ~~,~~ \chi_T = \nicefrac{1}{P}$$
+
+\subsection{Relations pour un fluide bivariant}
+
+$$dS = \frac{C_p}{T}dT - \frac{P\beta}{\rho}\chi_TdP$$
+$$dT = -\frac{T}{\rho\chi_TP}d\rho + \frac{T}{P}dP$$
+$$d\rho = \rho\chi_T(dP - P\beta dT)$$
+
+\section{Équations fondamentales}
+
+Voir equations (2.1-2-3) ainsi que le chapitre 1.
+
+\subsection{Conservation de la masse}
+
+$$\frac{\dr\rho}{\dr t} + \mathrm{div}(\rho\vv{v}) = 0$$
+
+\subsection{Conservation de l'énergie}
+
+$$\rho T\frac{DS}{Dt} = \lambda\Delta T + \OO(||v||^2)$$
+
+\subsection{Équation de Navier-Stokes}
+
+$$\rho\frac{D\vv{v}}{Dt} = -\grad P + \mu\vv{\Delta}\vv{v} + (\eta + \frac{\mu}{3})\grad\div\vv{v}$$
+
+$$\rho\frac{D\vv{v}}{Dt} = -\grad P + (\eta +\frac{4}{3}\mu) \grad\div\vv{v} - \mu\rot\rot\vv{v}$$
+
+\subsection{Loi de Fourier}
+
+$$\varphi = - \lambda\grad T$$
+
+$\varphi$ : flux de chaleur
+
+\subsection{Équations du Problème Acoustique}
+
+$$\left\{\begin{array}{l}
+		\frac{\gamma}{c_0}\frac{\dr p}{\dr t} - \frac{\rho_0c_0}{T_0}\frac{\dr\tau}{\dr t} + \rho_0c_0\div(\vv{v_l}) = 0\\
+		\left[\frac{1}{c_0} \frac{\dr}{\dr t} - l_v\Delta\right]\vv{v_l} = -\frac{1}{\rho_0c_0}\grad p\\
+		\left[\frac{1}{c_0}\frac{\dr}{\dr t} - l'_v\Delta\right]\vv{v_v} = \vv{0}\\
+		\left[\frac{1}{c_0}\frac{\dr}{\dr t} - l_h\Delta\right]\tau = \frac{1}{\rho_0c_0C_p}\frac{\dr p}{\dr t}
+\end{array}\right.$$
+
+\subsection{Équations du Problème Acoustique}
+
+Pour le détail des approximations formulées, voir diapos et les équations (2.44 à 49).  
+Au premier ordre de $k_0l_{vh} << 1$ et pour $\xi = p,~\vv{v_l},~\mathrm{ou}~\tau$ : 
+
+$$\left\{\begin{array}{l}
+		(\Delta + k_v^2) \vv{v_v} = 0\\
+		(\Delta + k_a^2)\xi_a \approx 0\\
+		(\Delta + k_h^2)\xi_h \approx 0
+\end{array}\right.
+~~,~~
+\begin{array}{l}
+k_a = k_0\sqrt{1-jk_0l_{vh}}\\
+k_v = \sqrt{\frac{-jk_0}{l'_v}}\\
+k_h = \sqrt{\frac{-jk_0}{l_h}}
+\end{array}
+$$
+
+\section{Équations d'ondes}
+
+\subsection{Fluide visqueux non conducteur}
+
+$$\left[1 + \frac{l_v}{c_0}\frac{\dr}{\dr t}\right]\Delta p - \frac{1}{c_0^2}\frac{\dr^2 p}{\dr t^2} = 0$$
+
+$$k \approx k_0 - j\frac{l_v}{2}k_0^2$$
+
+\subsection{Fluide visqueux et conducteur}
+
+Voir pp. 24-25.
+
+$$\underbrace{\left[\frac{1}{c_0}\frac{\dr}{\dr t} - l_h\Delta \right]}_{entropique}
+\underbrace{\left[\frac{1}{c_0^2}\frac{\dr^2}{\dr t^2} - \left(1+l_{vh}\frac{1}{c_0}\frac{\dr}{\dr
+t}\right)\Delta\right]}_{acoustique}
+p \approx 0$$
+
+\subsection{Avec relaxation thermique moléculaire}
+Voir p. 29 équation (2.34-35).
+
+$$\left[\Delta + k_0^2\left(1-jk_0l_{vh}-\sum_qD_q\frac{j\omega\theta_q}{1+j\omega\theta_q}\right)\right]p =0$$
+
+$$D_q = \frac{(\gamma-1)C_{V_q}^v}{C_p}$$
+
+
+\subsection{Atténuation monoatomique}
+
+Voir pp. 26-27.
+$$(\Delta + k^2)p = 0 ~~,~~ k = k_0 - j\frac{l_{vh}}{2}k_0^2$$
+
+\subsection{Relations $\vv{v_l} \leftrightarrow \tau \leftrightarrow p$ monoatomique}
+
+$$\left\{\begin{array}{l}
+		p_a \approx \tau_a\rho_0 C_p\\
+		p_h \approx 0
+\end{array}\right. ~~,~~
+\left\{\begin{array}{l}
+	\frac{\dr\vv{v_{la}}}{\dr t} \approx - \frac{\gamma}{\gamma - 1} \frac{P_0}{\rho_0T_0}\grad\tau_a\\
+	v_lh \approx \frac{\gamma P_0}{\rho_0c_0T_0}l_h\grad\tau_h
+\end{array}\right.
+$$
+
+\subsection{Conditions à une interface}
+
+Voir équations (2.40 à 43).
+
+$$\vv{v_{\textbackslash\textbackslash}}(\vv{r_f},t) = \vv{v_{p_{\textbackslash\textbackslash}}}(\vv{r_f},t)$$
+$$\tau(\vv{r_f},t) = 0$$
+
+\section{Longueurs Caractéristiques}
+
+\subsection{Longueurs $l_v$, $l'_v$, $l_h$ et $l_{vh}$}
+
+Voir équations (2.8-9-10) et paragraphe (2.21.2).
+
+$$\begin{array}{lcl}
+	l_v = \frac{1}{\rho_0c_0}\left(\frac{4}{3}\mu + \eta\right) & ~,~ &  l'_v = \frac{\mu}{\rho_0c_0}\\
+l_h = \frac{\lambda}{\rho_0c_0C_p} & ~,~ & l_{vh} = l_v = (\gamma - 1)l_h
+\end{array}$$
+
+\subsection{Couches limites thermiques et visqueuses}
+
+Voir p.31, équations (2.38-39).
+
+$$\delta_\nu = \sqrt{\frac{2\mu}{\omega\rho}} = \sqrt{\frac{2\nu}{\omega}}$$
+$$\delta_\kappa = \sqrt{\frac{2\lambda}{\omega\rho C_p}} = \sqrt{\frac{2\kappa}{\omega}} = \frac{\delta_\nu}{\mathrm{Pr}}$$ 
+
+\section{Propagation dans les guides}
+
+\subsection{Équation de propagation}
+
+Voir équations (2.77-78).
+
+$$\dr^2_{xx} p + k^2p = 0$$
+$$k = k_0\sqrt{1+\frac{f_\nu+(\gamma-1)f_\kappa}{1-f_\nu}}$$
+
+\subsection{Fonctions visqueuse et thermique}
+
+\subsubsection{Tuyau Cylindrique (rayon $R$)}
+
+$$f_{\nu,\kappa} = \frac{2}{k_{v,h}R} \frac{\JJ_1(k_{v,h}R)}{\JJ_0(k_{v,h}R)}$$
+
+\subsubsection{Fente (largeur $h$)}
+
+$$f_{\nu,\kappa} = \frac{\mathrm{tanh}\left(\frac{(1+j)h}{2\delta_{\nu,\kappa}}\right)}{\left(\frac{(1+j)h}{2\delta_{\nu,\kappa}}\right)}$$
+
+\subsubsection{Tuyau à section carrée}
+
+Voir p. 41 équation (2.87).
+
+% You can even have references
+%\rule{0.3\linewidth}{0.25pt}
+%\scriptsize
+%\bibliographystyle{abstract}
+%\bibliography{refFile}
+\end{multicols}
+\end{document}
