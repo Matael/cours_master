@@ -89,6 +89,12 @@ $$\frac{\DD\bullet}{\DD t} = \frac{\dr\bullet}{\dr t} + \vv{u}\vv{\nabla}\bullet
 
 $$Z = Z_c\frac{Z_L + jZ_C\tan kL}{Z_C + jZ_L\tan kL}$$
 
+\subsection{Nombres adimensionnels}
+
+$$\mathrm{Re} = \frac{UD}{\nu} ~~,~~ \mathrm{St} = \frac{fD}{U} ~~,~~ M = \frac{U}{c}$$
+
+Les systèmes sifflent pour $\mathrm{St} \approx 0.4$.
+
 \subsection{Conservation de la Masse}
 
 $$\frac{\dr\rho}{\dr t} + \vv{\nabla}(\rho\vv{u}) = 0$$
@@ -104,8 +110,13 @@ $$p\frac{\DD\vv{u}}{\DD t} = -\vv{\nabla}p$$
 
 \subsection{Équation d'Euler (forme de Crocco)}
 
-$$\frac{\dr\vv{u}}{\dr t} = -\vv{\nabla}B - \vv{\nabla}\wedge\vv{\nabla}\wedge\vv{u}$$
-$$B = \frac{\dr\rho}{\rho} + \frac{u^2}{2}$$
+$$\frac{\dr\vv{u}}{\dr t} = -\vv{\nabla}B - \vv{\nabla}\wedge\vv{\nabla}\wedge\vv{u}
+~~,~~
+B = \frac{\dr\rho}{\rho} + \frac{u^2}{2}$$
+
+\subsection{Équation de Bernoulli}
+
+$$p_1 + \frac{1}{2}\rho_0v_1^2 = p_2 + \frac{1}{2}\rho_0v_2^2$$
 
 \subsection{Conservation de l'Énergie}
 
@@ -282,11 +293,15 @@ $$TL = - 20\log_{10}(|T|)$$
 
 $$R = -\frac{1-M\left[\left(\frac{S_1}{S_j}\right)^2-1\right]}{1+M\left[\left(\frac{S_1}{S_j}\right)^2-1\right]}$$
 
+\subsection{Correction de Rayleigh}
+
+$$l_c = \frac{8R_t}{3\pi}$$
+
 \section{Guides Traités}
 
-$$- \Delta_\bot p = \alpha^2 p$$
-
-$$\alpha^2 = \left(\frac{\omega}{c_0} - Mk\right)^2 - k^2$$
+$$- \Delta_\bot p = \alpha^2 p
+~~,~~
+\alpha^2 = \left(\frac{\omega}{c_0} - Mk\right)^2 - k^2$$
 
 $$p\big|_h = \rho_0c_0Z\vv{u}\cdot\vv{n}$$
 
