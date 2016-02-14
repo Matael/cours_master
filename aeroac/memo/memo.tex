@@ -1,0 +1,306 @@
+\documentclass[10pt,landscape,a4paper]{article}
+\usepackage{multicol}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage[landscape]{geometry}
+\usepackage{nicefrac}
+\usepackage{ulem}
+\usepackage{amsmath,amsthm,amsfonts,amssymb}
+\usepackage{color,graphicx,overpic}
+\usepackage{hyperref}
+
+\usepackage{tikz}
+
+
+% This sets page margins to .5 inch if using letter paper, and to 1cm
+% if using A4 paper. (This probably isn't strictly necessary.)
+% If using another size paper, use default 1cm margins.
+\ifthenelse{\lengthtest { \paperwidth = 11in}}
+    { \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
+    {\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+        {\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+        {\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+    }
+
+% Turn off header and footer
+\pagestyle{empty}
+
+% Redefine section commands to use less space
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%x
+                                {\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+                                {-1explus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%
+                                {\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {1ex plus .2ex}%
+                                {\normalfont\small\bfseries}}
+\makeatother
+
+% Don't print section numbers
+\setcounter{secnumdepth}{0}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
+\newcommand\vv{\mathbf}
+\newcommand\DD{\mathrm{D}}
+\newcommand\OO{\mathcal{O}}
+\newcommand\JJ{\mathrm{J}}
+\newcommand\dr{\partial}
+\newcommand\grad{\mathrm{\mathbf{grad}}}
+\renewcommand\div{\mathrm{div}}
+\newcommand\rot{\mathrm{\mathbf{rot}}}
+\newcommand\uul[1]{\underline{\underline{#1}}}
+
+
+\begin{document}
+\raggedright
+\footnotesize
+\begin{multicols}{3}
+
+
+% multicol parameters
+% These lengths are set only within the two main columns
+%\setlength{\columnseprule}{0.25pt}
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{2pt}
+
+\begin{center}
+     \Large{\underline{Aéroacoustique}} \\
+\end{center}
+
+\section{Outils}
+
+\subsection{Dérivée Totale}
+
+$$\frac{\DD\bullet}{\DD t} = \frac{\dr\bullet}{\dr t} + \vv{u}\vv{\nabla}\bullet$$
+
+\subsection{Impédance Ramenée}
+
+$$Z = Z_c\frac{Z_L + jZ_C\tan kL}{Z_C + jZ_L\tan kL}$$
+
+\subsection{Conservation de la Masse}
+
+$$\frac{\dr\rho}{\dr t} + \vv{\nabla}(\rho\vv{u}) = 0$$
+
+\subsection{Équation du Navier-Stokes}
+
+$$\rho\frac{\DD\vv{u}}{\DD t} = - \vv{\nabla}p + \vv{\nabla}\uul{\tau} + \vv{f}$$
+$$\uul{\tau} = \eta(\uul{\nabla}\vv{u} + (\uul{\nabla}\vv{u})^T) - \frac{2}{3}\eta(\uul{\nabla}\vv{u})\uul{I}$$
+
+En négligeant les pertes visqueuses (\textbf{Équation d'Euler}):
+
+$$p\frac{\DD\vv{u}}{\DD t} = -\vv{\nabla}p$$
+
+\subsection{Équation d'Euler (forme de Crocco)}
+
+$$\frac{\dr\vv{u}}{\dr t} = -\vv{\nabla}B - \vv{\nabla}\wedge\vv{\nabla}\wedge\vv{u}$$
+$$B = \frac{\dr\rho}{\rho} + \frac{u^2}{2}$$
+
+\subsection{Conservation de l'Énergie}
+
+$$\rho T\frac{\DD S}{\DD t} = - \vv{\nabla}\cdot\vv{q} - \uul{\tau}:\uul{u}$$
+
+\begin{itemize}
+	\item $q$ : flux de chaleur
+	\item $S$ : entropie
+\end{itemize}
+
+\subsection{Équation d'État}
+
+$$\frac{\DD P}{\DD t} = \left.\frac{\dr P}{\dr\rho}\right)_S\frac{\DD\rho}{\DD t} + \left.\frac{\dr P}{\dr S}\right)_\rho\frac{\DD S}{\DD t}$$
+
+\section{Équation d'Onde}
+
+Écoulement uniforme $\Rightarrow$ équation d'onde convectée
+
+$$\frac{1}{c_0^2}\frac{\DD^2p}{\DD t^2} - \Delta p = 0$$
+
+\section{Solutions}
+
+\subsection{Sol. Modales avec écoulement}
+
+$$p = \sum_{n=0}^\infty c_n\psi_n(y,z)e^{-jk_0z}$$
+$$\Delta_\bot\psi_n = -\alpha^2\psi_nn  ~~,~~ \alpha_n^2 = \left(\frac{\omega}{c_0} - Mk_n\right) - k_n^2$$
+
+\subsection{Nombre d'onde (Guide 2D)}
+
+\subsubsection{Sans écoulement}
+
+$$k_n = \sqrt{\left(\frac{\omega}{c_0}\right)^2 - \left(\frac{n\pi}{h}\right)^2}$$
+
+\subsubsection{Écoulement uniforme}
+
+$$k_n = \frac{-\omega M \pm \sqrt{\omega^2 - (1-M^2)\alpha_n^2}}{1-M^2}$$
+
+\subsection{Nombre d'onde (Rect. 3D)}
+
+$$l_{mn}^2 = (\frac{\omega}{c_0} - Mk_{mn})^2 - \left(\frac{n\pi}{a}\right) - \left(\frac{m\pi}{a\beta}\right)$$
+
+\begin{itemize}
+	\item $\beta$ aspect ratio
+\end{itemize}
+
+\section{Discontinuités sans écoulement}
+
+\begin{center}
+	\begin{tikzpicture}[>=stealth]
+		\draw[thick] (-2,.25) -- ++(2,0) -- ++(0,.25) -- ++(2,0);
+		\draw[thick] (-2,-.25) -- ++(2,0) -- ++(0,-.25) -- ++(2,0);
+
+		\draw[->] (-2.5,-.75) -- ++(5,0) node[midway,below] {$0$} node[right] {$x$};
+		\draw[<->] (-1,-.25) -- ++(0,.5) node[midway,right] {$S_1$};
+		\draw[<->] (1,-.5) -- ++(0,1) node[midway,right] {$S_2$};
+
+		\draw[->] (-2.5,.125) node[left] {$p_1^+$} -- ++(.5,0);
+		\draw[<-] (-2.5,-.125) node[left] {$p_1^-$} -- ++(.5,0);
+		\draw[->] (2.5,.25) node[right] {$p_2^+$} -- ++(-.5,0);
+		\draw[<-] (2.5,-.25) node[right] {$p_2^-$} -- ++(-.5,0);
+
+		\node at (-4,0) {$\alpha^2 = \frac{S_1}{S_2}$};
+	\end{tikzpicture}
+\end{center}
+
+\subsection{Mode plan seul}
+
+$$\left\{\begin{array}{l}
+		S_1u_1\big|_0 = S_2u_2\big|_0\\
+		p_1\big|_0 = p_2\big|_0
+\end{array}\right.$$
+
+$$\begin{Bmatrix}
+	p_1^- \\ p_2^+
+\end{Bmatrix} =
+\begin{bmatrix}
+	R⁺=\frac{1-\alpha^2}{1+\alpha^2} & T^- = \frac{2}{1+\alpha^2}\\
+	T^+ = \frac{2\alpha^2}{1+\alpha^2} & R^- = \frac{1-\alpha^2}{1+\alpha^2}
+\end{bmatrix}
+\begin{Bmatrix}
+	p_1^+ \\ p_2^-
+\end{Bmatrix}$$
+
+\subsection{Modèle amélioré}
+
+$$\left\{\begin{array}{l}
+		S_1u_1\big|_0 = S_2u_2\big|_0\\
+		p_1\big|_0 = p_2\big|_0 + j\omega\rho l_cu_1\big|_0
+\end{array}\right.
+~~,~~
+l_c = \frac{1-\alpha^2}{jk_0K_1^+}$$
+
+Voir après.
+
+\subsection{Modèle 2 zones}
+
+\subsubsection{Zone 1}
+
+$$\left\{\begin{array}{l}
+		\rho_0c_0u_1\big|0 = K_0^+p_2^+\big|_0 + K_1^+p_s\big|_0\\
+		p_1\big|_0 = p_2^+\big|_0 + p_s\big|_0
+\end{array}\right.$$
+
+\subsubsection{Zone 2}
+
+$$0 = K_0^+p_2^+\big|_0 - \frac{S_1}{S_2}K_1^+p_s\big|_0$$
+
+\subsubsection{Modes}
+
+Plans : $K_0^\pm = \pm 1$
+
+Evanescents : $K_1^\pm = \pm j\sqrt{\left(\frac{\gamma c_0}{\omega r_2}\right)^2 - 1}$
+
+\section{Discontinuité avec écoulement}
+
+\begin{center}
+	\begin{tikzpicture}[scale=1,>=stealth]
+		\draw[thick] (-2,.6) -- ++(2,0) node[midway, above] {$M_1, \rho$} -- ++(0,.4) -- ++(2,0) node[midway, above]
+		{$M_2,\rho$};
+		\draw[dashed] (-2.5,0) -- ++(5,0);
+
+		\foreach \i in {0,...,2} {
+			\draw[->] (-1.25,0.1+0.2*\i) -- ++(.6,0);
+		}
+		\foreach \i in {0,...,4} {
+			\draw[->] (.75,0.1+0.2*\i) -- ++(.6,0);
+		}
+	\end{tikzpicture}
+\end{center}
+
+$$R^+ = -\frac{1-\alpha^2}{1+\alpha^2}\left(1+\frac{4\alpha^2M_1}{1+\alpha^2} + \OO(M_1^2)\right)$$
+$$T^+ = -\frac{2\alpha^2}{1+\alpha^2}\left(1+\frac{2\alpha^2(1-\alpha^2)M_1}{1+\alpha^2} + \OO(M_1^2)\right)$$
+
+\section{Muffler sans écoulement}
+
+\begin{center}
+	\begin{tikzpicture}[scale=1,>=stealth]
+		\draw[thick] (-2.5,.25) -- ++(1.5,0) -- ++(0,.5) -- ++(2,0) -- ++(0,-.5) -- ++(1.5,0);
+		\draw[thick] (-2.5,-.25) -- ++(1.5,0) -- ++(0,-.5) -- ++(2,0) -- ++(0,+.5) -- ++(1.5,0);
+
+		\draw[<->] (-1,-.5) -- ++(2,0) node[midway, above] {$L$};
+		\draw[<->] (.5,-.75) -- ++(0,1.5) node[midway,left] {$S_2$};
+		\draw[<->] (2,-.25) -- ++(0,.5) node[midway, left] {$S_1$};
+		\node at (1.7,-.7) {$A = \frac{S_1}{S_2}$};
+	\end{tikzpicture}
+\end{center}
+
+
+$$T = \frac{2Ae^{jk_0L}}{2A\cos(k_0L) + j(1+A^2)\sin(k_0L)}$$
+
+$$TL = - 20\log_{10}(|T|)$$
+
+
+\section{Diaphragme avec écoulement}
+
+\begin{center}
+	\begin{tikzpicture}[scale=1,>=stealth]
+		\draw[thick] (-2,.75) -- ++(2,0) -- ++(0,-.5);
+			\draw[->] (-2,.6) -- ++(1.5,0) arc (90:0:.25) arc (-180:-90:.2) -- ++(2,0);
+		\begin{scope}[yscale=-1]
+			\draw[thick] (-2,.75) -- ++(2,0) -- ++(0,-.5);
+			\draw[->] (-2,.6) -- ++(1.5,0) arc (90:0:.25) arc (-180:-90:.2) -- ++(2,0);
+		\end{scope}
+		\draw[->] (-2,0) -- (1.95,0);
+
+		\draw[dotted] (0,.25) -- ++(.5,0);
+		\draw[dotted] (0,-.25) -- ++(.5,0);
+		\draw[<->] (.25,.25) -- ++(0,-.5) node[below] {$S_1$};
+		\draw[<->] (1.5,.15) -- ++(0,-.3) node[below] {$S_j$};
+
+		\node at (-1.5,.3) {$M$};
+	\end{tikzpicture}
+\end{center}
+
+$$R = -\frac{1-M\left[\left(\frac{S_1}{S_j}\right)^2-1\right]}{1+M\left[\left(\frac{S_1}{S_j}\right)^2-1\right]}$$
+
+\section{Guides Traités}
+
+$$- \Delta_\bot p = \alpha^2 p$$
+
+$$\alpha^2 = \left(\frac{\omega}{c_0} - Mk\right)^2 - k^2$$
+
+$$p\big|_h = \rho_0c_0Z\vv{u}\cdot\vv{n}$$
+
+$$1 = \frac{Zc_0}{j\omega}\alpha\tan(\alpha h)$$
+
+\begin{itemize}
+	\item $Z$ impédance de paroi normalisée par $\rho_0c_0$
+\end{itemize}
+
+
+% You can even have references
+%\rule{0.3\linewidth}{0.25pt}
+%\scriptsize
+%\bibliographystyle{abstract}
+%\bibliography{refFile}
+\end{multicols}
+\end{document}
