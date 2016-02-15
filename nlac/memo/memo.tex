@@ -1,0 +1,145 @@
+\documentclass[10pt,landscape,a4paper]{article}
+\usepackage{multicol}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage[landscape]{geometry}
+\usepackage{nicefrac}
+\usepackage{ulem}
+\usepackage{amsmath,amsthm,amsfonts,amssymb}
+\usepackage{color,graphicx,overpic}
+\usepackage{hyperref}
+
+\usepackage{tikz}
+
+
+% This sets page margins to .5 inch if using letter paper, and to 1cm
+% if using A4 paper. (This probably isn't strictly necessary.)
+% If using another size paper, use default 1cm margins.
+\ifthenelse{\lengthtest { \paperwidth = 11in}}
+    { \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
+    {\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+        {\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+        {\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+    }
+
+% Turn off header and footer
+\pagestyle{empty}
+
+% Redefine section commands to use less space
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%x
+                                {\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+                                {-1explus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%
+                                {\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {1ex plus .2ex}%
+                                {\normalfont\small\bfseries}}
+\makeatother
+
+% Don't print section numbers
+\setcounter{secnumdepth}{0}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
+\newcommand\vv{\mathbf}
+\newcommand\DD{\mathrm{D}}
+\newcommand\OO{\mathcal{O}}
+\newcommand\JJ{\mathrm{J}}
+\newcommand\dr{\partial}
+\newcommand\grad{\mathrm{\mathbf{grad}}}
+\renewcommand\div{\mathrm{div}}
+\newcommand\rot{\mathrm{\mathbf{rot}}}
+\newcommand\uul[1]{\underline{\underline{#1}}}
+
+
+\begin{document}
+\raggedright
+\footnotesize
+\begin{multicols}{3}
+
+
+% multicol parameters
+% These lengths are set only within the two main columns
+%\setlength{\columnseprule}{0.25pt}
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{2pt}
+
+\begin{center}
+     \Large{\underline{Non Linear Acoustics}} \\
+\end{center}
+
+\section{Governing Equations}
+
+\subsubsection{Mass Conservation}
+
+$$\frac{\dr\rho}{\dr t} + \div(\rho\vv{v}) = 0$$
+
+\subsubsection{Momentum Conservation}
+
+$$\rho\frac{\DD\vv{v}}{\DD t} = -\grad p + \eta\vv{\Delta}\vv{v} = \left(\xi +\frac{1}{3}\eta\right)\grad\div\vv{v}$$
+
+\subsection{Energy Conservation}
+
+$$\rho T\left(\frac{\dr S}{\dr t} + (\vv{v}\vv{\nabla})S\right) = \lambda\Delta T + \xi(\div\vv{v})^2 +
+\frac{\eta}{2}\left(\frac{\dr v_i}{\dr x_k} + \frac{\dr v_k}{\dr x_i} - \frac{2}{3}\delta_{ik}\frac{\dr v_l}{\dr
+x_l}\right)$$
+
+\subsection{State Equation}
+
+$$P = P(\rho,S)$$
+
+\section{Simple Wave Equation}
+
+$$\frac{\dr v}{\dr x} - \frac{\epsilon}{c_0^2}v\frac{\dr v}{\dr \tau} = 0
+~~\Rightarrow~~
+\frac{\dr V}{\dr \Xi} - V\frac{\dr V}{\dr \Theta} = 0$$
+
+$$\epsilon = \frac{\gamma + 1}{2} ~~,~~ \tau = x-\frac{t}{c_0}$$
+$$\Theta	 = \tau\omega_0 ~~,~~ V = \frac{v}{v_0} ~~,~~ \Xi = \frac{x}{x_{NL}}$$
+
+\section{Simple Wave Equation with absorption}
+
+$$\zeta,\eta\not=0 ~,~ \lambda\not=0 ~~\Rightarrow~~ \frac{\dr^2v}{\dr t^2} - c_0^2\frac{\dr^2v}{\dr x^2} =
+\frac{b}{c_0} \frac{dr^3v}{\dr x^2\dr t}$$
+
+\subsection{Effective Viscosity}
+
+$$b = \zeta + \frac{4}{3}\eta +\lambda\left(\frac{1}{C_V}-\frac{1}{C_P}\right)$$
+
+\section{NL Effects \& Absorption -- Burger's Equation}
+
+$$\frac{\dr v}{\dr x} - \frac{\epsilon}{c_0^2}v\frac{\dr v}{\dr t} - \frac{b}{2\rho_0c_0^3}\frac{\dr^2v}{\dr t^2} = 0$$
+$$\frac{\dr V}{\dr\Xi} - V\frac{\dr V}{\dr\Theta} - \underbrace{\frac{1}{2\epsilon\mathrm{Re}}}_G\frac{\dr^2V}{\dr\Theta^2} = 0$$
+
+\subsection{About $\mathrm{Re}$ -- Acoustical Reynolds}
+
+$$\mathrm{Re} = \frac{\rho_0c_0v_0}{b\omega_0}$$
+
+\begin{itemize}
+	\item $\mathrm{Re} << 1$ Viscosity hides NL effects ($V\nicefrac{\dr V}{\dr\Theta}$ is small)
+	\item $\mathrm{Re} >> 1$ indicates $\frac{1}{2\epsilon\mathrm{Re}}\nicefrac{\dr^2V}{\dr\Theta^2}$ is neglectable for
+		short distances
+\end{itemize}
+\section{Kordeveg de Vries-Burger's Equation}
+
+$$\frac{\dr V}{\dr\Xi} - V\frac{\dr V}{\dr\Theta} - G\frac{\dr^2V}{\dr\Theta^2} + \underbrace{D\frac{\dr^3V}{\dr\Theta^3}}_{dissipation} = 0$$
+
+
+% You can even have references
+%\rule{0.3\linewidth}{0.25pt}
+%\scriptsize
+%\bibliographystyle{abstract}
+%\bibliography{refFile}
+\end{multicols}
+\end{document}
