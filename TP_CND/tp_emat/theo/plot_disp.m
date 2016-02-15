@@ -30,9 +30,9 @@ vL = 6.450;
 vT = 3.100;
 
 % vecteur f
-f0 = 50e3;
-f1 = 300e3;
-fpas = 500;
+f0 = 0e-3;
+f1 = 1;
+fpas = 10e-3;
 f_v = (f0:fpas:f1);
 
 h = 6; % mm
