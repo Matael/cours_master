@@ -20,7 +20,7 @@
 
 
 
-function dispercurves(h, vL, vT, f_v)
+function figh=dispercurves(h, vL, vT, f_v)
 	% on cherche à tracer les courbes pour les modes sym et antisym
 	% d'après les éq de propagation dans une plaque solide.
 	%
@@ -63,7 +63,7 @@ function dispercurves(h, vL, vT, f_v)
 	isoline = [0 0];
 
 	% figure : plan fh,vphi
-	figure;
+	figh = figure;
 
 	vphi = w./kx;
 	contour(f*h, vphi, sym, isoline, 'b', 'LineWidth', 2);
