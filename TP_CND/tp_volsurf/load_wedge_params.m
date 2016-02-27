@@ -21,7 +21,7 @@
 %  0. You just DO WHAT THE FUCK YOU WANT TO.
 %
 
-wedge.path_length=3.6e-2;
+wedge.path_length=3.5e-2;
 wedge.vL=2700;
 wedge.vT=1100;
 wedge.tof=wedge.path_length/wedge.vL;

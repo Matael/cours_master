@@ -22,7 +22,7 @@
 %
 
 function [tof, trig_idx, echo_idx]=get_tof(filename, trig_idx, echo_idx)
-	SP = 4e-8; % sampling period
+	SP = 2e-8; % sampling period
 
 	[trace, t_v, fh] = display_trace(filename,SP);
 	figure(fh);
@@ -30,11 +30,12 @@ function [tof, trig_idx, echo_idx]=get_tof(filename, trig_idx, echo_idx)
 
 	if (nargin<3)
 
-		disp('Please select around the time sync pulse');
-		x = ginput(2);
-		idx = sort(floor(x));
-		[_, trig_idx] = max(trace(idx(1):idx(2)));
-		trig_idx = idx(1)+trig_idx;
+		% disp('Please select around the time sync pulse');
+		% x = ginput(2);
+		% idx = sort(floor(x));
+		% [_, trig_idx] = max(trace(idx(1):idx(2)));
+		% trig_idx = idx(1)+trig_idx;
+		trig_idx=0;
 
 		disp('Please select around the echo.')
 		x = ginput(2);
@@ -49,8 +50,9 @@ function [tof, trig_idx, echo_idx]=get_tof(filename, trig_idx, echo_idx)
 	plot(ones(1,2)*trig_idx, [-150 150], 'r');
 	plot(ones(1,2)*echo_idx, [-150 150], 'r');
 
-	load_wedge_params;
-
-	tof=abs(echo_idx-trig_idx)*SP-wedge.tof*2;
+	% load_wedge_params;
+  %
+	% tof=abs(echo_idx-trig_idx)*SP-wedge.tof*2;
+	tof=abs(echo_idx-trig_idx)*SP;
 end
 

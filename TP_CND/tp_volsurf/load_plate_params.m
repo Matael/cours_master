@@ -24,5 +24,4 @@
 plate.thickness = 20e-3;
 plate.vL = 6450;
 plate.vT = 3100;
-
-
+plate.vR = 2908;
