@@ -29,6 +29,7 @@ function [ascan, offset] = extract_ascan(measfile,offset)
 
 	if nargin<2
 		figure(20000);
+		colormap('bone')
 		pcolor(measdata);
 		shading interp;
 		title([strrep(measfile, '_', '\_') ' : Select A-Scan'])

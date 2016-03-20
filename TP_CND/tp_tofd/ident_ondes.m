@@ -1,5 +1,5 @@
 %
-% show.m
+% ident_ondes.m
 %
 % Copyright (C) 2016 Mathieu Gaborit (matael) <mathieu@matael.org>
 %
@@ -21,18 +21,27 @@
 %  0. You just DO WHAT THE FUCK YOU WANT TO.
 %
 
-function [measdata, fh]=show(meas)
-	measdata = load(meas)';
-	fh = 0;
-	if size(measdata)(1)>1 && size(measdata)(2)>1
-		fh = figure;
-		colormap('gray')
-		% pcolor(log10(abs(measdata)));
-		pcolor(measdata);
-		shading interp;
-		% colorbar;
-		title(strrep(meas, '_', '\_'))
-	end
-end
+clear all;
+close all;
+
+SF = 200e6;
+
+offset = 87;
+[ascan] = extract_ascan('newmesures2/MESSAINE_matlab.csv', offset);
+
+
+timevect = (0:length(ascan)-1)/SF*1e6;
+plot(timevect, ascan, 'LineWidth', 1.5);
+
+hold on;
+rectangle('position',[0.32 -42 .15 84],'EdgeColor', 'r', 'LineWidth', 2);
+rectangle('position',[0.72 -180 .2 360],'EdgeColor', 'k', 'LineWidth', 2);
+rectangle('position',[1.73 -180 .2 360],'EdgeColor', [62,125,0]/255, 'LineWidth', 2);
+
+grid on;
+xlabel('Temps (us)')
+ylabel('Amplitude')
+
+print('-dpng', 'figures_out/ident_ondes.png')
 
 
