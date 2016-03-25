@@ -1,0 +1,337 @@
+<!DOCTYPE HarfangParameters>
+<hud-0000:01:00.0 class="device::UT" docrole="extended" ver="3"><hwId leafValue="osprey"/>
+<productId leafValue=""/>
+<bucketSize leafValue="2"/>
+<pa><activeChannelQty leafValue="16"/>
+<muxPosQty leafValue="4"/>
+<gainMax leafValue="76"/>
+<voltageMin leafValue="25"/>
+<voltageMax leafValue="75"/>
+<voltageStep leafValue="5"/>
+<acqFreqsStr leafValue="65 MHz"/>
+<tcgGainSlopeMax leafValue="50"/>
+<power><load leafValue="50"/>
+<psMaxPwr leafValue="3.2"/>
+<clipRes leafValue="475000"/>
+<vFwd leafValue="20"/>
+<clipMaxPwr leafValue="999999"/>
+</power><features><digitalFir class="device::UT::FilterStage" trIndex="digitalFir"><global leafValue="false"/>
+<isVolatile leafValue="false"/>
+<settings><auto class="device::UT::FilterSetting" ver="2" trIndex="auto"><lowCutFreq leafValue="-1.79769313486232e+308"/>
+<centerFreq leafValue="0"/>
+<highCutFreq leafValue="1.79769313486232e+308"/>
+</auto><_0.5_MHz class="device::UT::FilterSetting" ver="2"><lowCutFreq leafValue="290000"/>
+<centerFreq leafValue="900000"/>
+<highCutFreq leafValue="2570000"/>
+</_0.5_MHz><_1.0_MHz class="device::UT::FilterSetting" ver="2"><lowCutFreq leafValue="290000"/>
+<centerFreq leafValue="910000"/>
+<highCutFreq leafValue="2580000"/>
+</_1.0_MHz><_2.25_MHz class="device::UT::FilterSetting" ver="2"><lowCutFreq leafValue="290000"/>
+<centerFreq leafValue="930000"/>
+<highCutFreq leafValue="2760000"/>
+</_2.25_MHz><_5.0_MHz class="device::UT::FilterSetting" ver="2"><lowCutFreq leafValue="4370000"/>
+<centerFreq leafValue="6300000"/>
+<highCutFreq leafValue="8900000"/>
+</_5.0_MHz><_7.5_MHz class="device::UT::FilterSetting" ver="2"><lowCutFreq leafValue="4370000"/>
+<centerFreq leafValue="6330000"/>
+<highCutFreq leafValue="8910000"/>
+</_7.5_MHz><_10.0_MHz class="device::UT::FilterSetting" ver="2"><lowCutFreq leafValue="7600000"/>
+<centerFreq leafValue="9500000"/>
+<highCutFreq leafValue="12100000"/>
+</_10.0_MHz><_15.0_MHz class="device::UT::FilterSetting" ver="2"><lowCutFreq leafValue="10000000"/>
+<centerFreq leafValue="12330000"/>
+<highCutFreq leafValue="14600000"/>
+</_15.0_MHz><Wide class="device::UT::FilterSetting" ver="2"><lowCutFreq leafValue="500000"/>
+<centerFreq leafValue="2550000"/>
+<highCutFreq leafValue="6100000"/>
+</Wide><Wider class="device::UT::FilterSetting" ver="2"><lowCutFreq leafValue="340000"/>
+<centerFreq leafValue="2100000"/>
+<highCutFreq leafValue="11200000"/>
+</Wider><Widest class="device::UT::FilterSetting" ver="2"><lowCutFreq leafValue="340000"/>
+<centerFreq leafValue="2200000"/>
+<highCutFreq leafValue="11900000"/>
+</Widest><None class="device::UT::FilterSetting" ver="2"><lowCutFreq leafValue="-1.79769313486232e+308"/>
+<centerFreq leafValue="0"/>
+<highCutFreq leafValue="1.79769313486232e+308"/>
+</None></settings><method leafValue="Finite impulse response"/>
+<type leafValue="band-pass"/>
+</digitalFir></features><maxDutyCycle leafValue="100"/>
+<serial leafValue=""/>
+</pa><ut><activeChannelQty leafValue="1"/>
+<muxPosQty leafValue="1"/>
+<gainMax leafValue="100"/>
+<voltageMin leafValue="100"/>
+<voltageMax leafValue="450"/>
+<voltageStep leafValue="10"/>
+<acqFreqsStr leafValue="50 MHz,100 MHz,200 MHz"/>
+<tcgGainSlopeMax leafValue="60"/>
+<power><load leafValue="25"/>
+<psMaxPwr leafValue="2.025"/>
+<clipRes leafValue="150"/>
+<vFwd leafValue="1"/>
+<clipMaxPwr leafValue="1"/>
+</power><features><digitalFir class="device::UT::FilterStage" trIndex="digitalFir"><global leafValue="false"/>
+<isVolatile leafValue="false"/>
+<settings><auto class="device::UT::FilterSetting" ver="2" trIndex="auto"><lowCutFreq leafValue="-1.79769313486232e+308"/>
+<centerFreq leafValue="0"/>
+<highCutFreq leafValue="1.79769313486232e+308"/>
+</auto><_0.5_MHz class="device::UT::FilterSetting" ver="2"><lowCutFreq leafValue="220000"/>
+<centerFreq leafValue="455000"/>
+<highCutFreq leafValue="690000"/>
+</_0.5_MHz><_1.0_MHz class="device::UT::FilterSetting" ver="2"><lowCutFreq leafValue="700000"/>
+<centerFreq leafValue="1150000"/>
+<highCutFreq leafValue="1600000"/>
+</_1.0_MHz><_2.25_MHz class="device::UT::FilterSetting" ver="2"><lowCutFreq leafValue="1600000"/>
+<centerFreq leafValue="2500000"/>
+<highCutFreq leafValue="3400000"/>
+</_2.25_MHz><_5.0_MHz class="device::UT::FilterSetting" ver="2"><lowCutFreq leafValue="3700000"/>
+<centerFreq leafValue="4850000"/>
+<highCutFreq leafValue="6000000"/>
+</_5.0_MHz><_7.5_MHz class="device::UT::FilterSetting" ver="2"><lowCutFreq leafValue="3700000"/>
+<centerFreq leafValue="6350000"/>
+<highCutFreq leafValue="9000000"/>
+</_7.5_MHz><_10.0_MHz class="device::UT::FilterSetting" ver="2"><lowCutFreq leafValue="7000000"/>
+<centerFreq leafValue="10500000"/>
+<highCutFreq leafValue="14000000"/>
+</_10.0_MHz><_15.0_MHz class="device::UT::FilterSetting" ver="2"><lowCutFreq leafValue="10000000"/>
+<centerFreq leafValue="16000000"/>
+<highCutFreq leafValue="22000000"/>
+</_15.0_MHz><Wide class="device::UT::FilterSetting" ver="2"><lowCutFreq leafValue="460000"/>
+<centerFreq leafValue="3730000"/>
+<highCutFreq leafValue="7000000"/>
+</Wide><Wider class="device::UT::FilterSetting" ver="2"><lowCutFreq leafValue="1600000"/>
+<centerFreq leafValue="7800000"/>
+<highCutFreq leafValue="14000000"/>
+</Wider><Widest class="device::UT::FilterSetting" ver="2"><lowCutFreq leafValue="1000000"/>
+<centerFreq leafValue="11500000"/>
+<highCutFreq leafValue="22000000"/>
+</Widest><None class="device::UT::FilterSetting" ver="2"><lowCutFreq leafValue="-1.79769313486232e+308"/>
+<centerFreq leafValue="0"/>
+<highCutFreq leafValue="1.79769313486232e+308"/>
+</None></settings><method leafValue="Finite impulse response"/>
+<type leafValue="band-pass"/>
+</digitalFir><analog class="device::UT::FilterStage" trIndex="analogFilter"><global leafValue="false"/>
+<isVolatile leafValue="false"/>
+<settings><auto class="device::UT::FilterSetting" ver="2" trIndex="auto"><lowCutFreq leafValue="-1.79769313486232e+308"/>
+<centerFreq leafValue="0"/>
+<highCutFreq leafValue="1.79769313486232e+308"/>
+</auto><narrow class="device::UT::FilterSetting" ver="2" trIndex="Low (0.24-7.3 MHz)"><lowCutFreq leafValue="240000"/>
+<centerFreq leafValue="1330000"/>
+<highCutFreq leafValue="7300000"/>
+</narrow><wide class="device::UT::FilterSetting" ver="2" trIndex="Mid (2.1-9.1 MHz)"><lowCutFreq leafValue="2100000"/>
+<centerFreq leafValue="4270000"/>
+<highCutFreq leafValue="9100000"/>
+</wide><wider class="device::UT::FilterSetting" ver="2" trIndex="High (4.25-19.0 MHz)"><lowCutFreq leafValue="4250000"/>
+<centerFreq leafValue="8000000"/>
+<highCutFreq leafValue="19000000"/>
+</wider><widest class="device::UT::FilterSetting" ver="2" trIndex="Broad (0.2-20.0 MHz)"><lowCutFreq leafValue="240000"/>
+<centerFreq leafValue="2170000"/>
+<highCutFreq leafValue="20000000"/>
+</widest></settings><method leafValue="Hardware based analog filter"/>
+<type leafValue="band-pass"/>
+</analog><damping class="device::UT::Feature" trIndex="monoDamping"><global leafValue="true"/>
+<isVolatile leafValue="false"/>
+<settings><_50_OHM class="Param" trIndex="50 ohms"/>
+<_400_OHM class="Param" trIndex="400 ohms"/>
+</settings></damping></features><maxDutyCycle leafValue="50"/>
+<serial leafValue=""/>
+</ut><features><encoder class="device::UT::Feature"><global leafValue="true"/>
+<isVolatile leafValue="false"/>
+<settings><SE class="Param"/>
+</settings></encoder></features><type leafValue="Hardware"/>
+<firmwareVersion leafValue="5.1.0"/>
+<frameVersion leafValue="1"/>
+<serial leafValue=""/>
+<bufferSize leafValue="133169152"/>
+</hud-0000:01:00.0>
+<!DOCTYPE HarfangParameters>
+<config ver="2"><productId leafValue="prisma"/>
+<part ver="3"><material leafValue="Steel"/>
+<component leafValue=""/>
+<partSerialNumber leafValue=""/>
+<locationRef leafValue=""/>
+<longWaveVelocity leafValue="5.9"/>
+<shearWaveVelocity leafValue="3.2"/>
+<thickness leafValue="20"/>
+<haz leafValue="5"/>
+<calBlockType leafValue=""/>
+<calBlockSerial leafValue=""/>
+<dgsMatAtt leafValue="0"/>
+<partGeometry leafValue="Plate"/>
+<streamDirection leafValue="Up Stream"/>
+<radius leafValue="100"/>
+<weld><config_Weld193 class="config::Weld"><direction leafValue="Axial"/>
+</config_Weld193></weld></part><encoders><name leafValue=""/>
+<setup leafValue="Scan Axis Only"/>
+<scanAxis ver="3"><type leafValue="Quadrature"/>
+<resolution leafValue="14"/>
+<axisName leafValue=""/>
+<start leafValue="0"/>
+<step leafValue="1"/>
+<distance leafValue="100"/>
+<coverage leafValue="Spots"/>
+<invert leafValue="false"/>
+<resetPositionTo leafValue="0"/>
+</scanAxis><eaCLpos leafValue="0"/>
+<eaCLoffset leafValue="0"/>
+<eaRotation leafValue="0"/>
+</encoders><probes ver="2"><config_Probe194 class="config::ProbeMonoCircular" ver="4"><isMonoDualCrystal leafValue="false"/>
+<connector leafValue="Ch. A TX/RX"/>
+<manufacturer leafValue="OLYMPUS"/>
+<frequency leafValue="10000000"/>
+<model leafValue="C544SM"/>
+<serial leafValue="SN941635"/>
+<lastCalibration leafValue=""/>
+<pulseType leafValue="Square-Wave"/>
+<pulseWidth leafValue="0.05"/>
+<elementSizeDim1 leafValue="6.5"/>
+<elementActMask ver="2">11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111</elementActMask><wedgePos ver="2"><masterProbeName leafValue=""/>
+<slavePositionMode leafValue="Facing"/>
+<indexOffset leafValue="-18"/>
+<scanOffset leafValue="0"/>
+<rotationZ leafValue="90"/>
+</wedgePos><wedge><config_Wedge195 class="config::WedgeAngular" ver="3"><manufacturer leafValue="OLYMPUS"/>
+<model leafValue="ST170LIHC"/>
+<serial leafValue=""/>
+<customizeWedge leafValue="false"/>
+<lwVelocity leafValue="2.33"/>
+<waveMode leafValue="LW Velocity"/>
+<contactSurface leafValue="Planar"/>
+<radius leafValue="100"/>
+<length leafValue="16"/>
+<cutAngle leafValue="21.783408361294"/>
+<probeCenterFromBack leafValue="5.41809664727406"/>
+</config_Wedge195></wedge></config_Probe194><config_Probe213 class="config::ProbeMonoCircular" ver="4"><isMonoDualCrystal leafValue="false"/>
+<connector leafValue="Ch. A RX"/>
+<manufacturer leafValue="OLYMPUS"/>
+<frequency leafValue="10000000"/>
+<model leafValue="C544SM"/>
+<serial leafValue="SN941635"/>
+<lastCalibration leafValue=""/>
+<pulseType leafValue="Square-Wave"/>
+<pulseWidth leafValue="0.05"/>
+<elementSizeDim1 leafValue="6.5"/>
+<elementActMask ver="2">11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111</elementActMask><wedgePos ver="2"><masterProbeName leafValue="config_Probe194"/>
+<slavePositionMode leafValue="Facing"/>
+<indexOffset leafValue="54"/>
+<scanOffset leafValue="0"/>
+<rotationZ leafValue="270"/>
+</wedgePos><wedge><config_Wedge195 class="config::WedgeAngular" ver="3"><manufacturer leafValue="OLYMPUS"/>
+<model leafValue="ST170LIHC"/>
+<serial leafValue=""/>
+<customizeWedge leafValue="false"/>
+<lwVelocity leafValue="2.33"/>
+<waveMode leafValue="LW Velocity"/>
+<contactSurface leafValue="Planar"/>
+<radius leafValue="100"/>
+<length leafValue="16"/>
+<cutAngle leafValue="21.783408361294"/>
+<probeCenterFromBack leafValue="5.41809664727406"/>
+</config_Wedge195></wedge></config_Probe213></probes><inspection ver="2"><jobCustomerName leafValue=""/>
+<site leafValue=""/>
+<operatorName leafValue=""/>
+<operatorQualification leafValue=""/>
+<procedureRef leafValue=""/>
+<couplantName leafValue=""/>
+<voltageMono leafValue="200"/>
+<deviceFeaturesSelections><damping leafValue="_50_OHM"/>
+</deviceFeaturesSelections><gateAlarmState leafValue="Off"/>
+<encodedAxisReference leafValue="Wedge Reference"/>
+<bondingRatioReference leafValue="50"/>
+<annotationMinDepth leafValue="0"/>
+<annotationMaxDepth leafValue="15"/>
+<annotationDefectAmplDef leafValue="Percent"/>
+<annotationMinAmpl leafValue="0"/>
+<annotationMaxAmpl leafValue="200"/>
+<annotationAmplAbsolute leafValue="false"/>
+<annotationdbAtt leafValue="50.1187233627272"/>
+<annotationDbInverted leafValue="false"/>
+<lockSetup leafValue="false"/>
+<shortMenu leafValue="false"/>
+<measurementBarItem><Measure1><select ver="2" leafValue="config_Scan196_Gain"/>
+</Measure1><Measure2><select ver="2" leafValue="G1peakAmp"/>
+</Measure2><Measure3><select ver="2" leafValue="G1peakSurface"/>
+</Measure3><Measure4><select ver="2" leafValue="H1-H2distDepthCorr"/>
+</Measure4><Measure5><select ver="2" leafValue="H1-H2distScan"/>
+</Measure5></measurementBarItem></inspection><referencesAScansList/>
+<scans><config_Scan196 class="config::TOFD" ver="7"><signalReprocessing leafValue="Averaging"/>
+<signalReprocessingQty leafValue="8"/>
+<probeNameTx leafValue="config_Probe194"/>
+<probeNameRx leafValue="config_Probe213"/>
+<acquisitionFreqSelect leafValue="200 MHz"/>
+<waveMode leafValue="LW Velocity"/>
+<dacOrTcgSelection leafValue="Disabled"/>
+<dacActive leafValue="false"/>
+<dacAlarmActive leafValue="false"/>
+<dacInterpolate leafValue="false"/>
+<dacRefGain leafValue="0"/>
+<dacTolerance><DacTolerance1/>
+<DacTolerance2/>
+<DacTolerance3/>
+</dacTolerance><filtersSelections><digitalFir ver="2" leafValue="auto"><autoSelected leafValue="_10.0_MHz"/>
+</digitalFir><analog ver="2" leafValue="auto"><autoSelected leafValue="wider"/>
+</analog></filtersSelections><gainRef leafValue="0"/>
+<gain leafValue="85"/>
+<refAmplitude leafValue="80"/>
+<prf leafValue="1000"/>
+<rejectMode leafValue="Disabled"/>
+<scaling leafValue="true"/>
+<startPath leafValue="26.505"/>
+<rangePath leafValue="17.6205699174232"/>
+<subSamplingSelector leafValue="Auto"/>
+<translate leafValue="0"/>
+<velocityWizard><type leafValue="Depth SDH"/>
+<firstReflector leafValue="50"/>
+<secondReflector leafValue="100"/>
+<firstGateStart leafValue="10"/>
+<firstGateRange leafValue="5"/>
+<firstGateAmplitude leafValue="25"/>
+<secondGateStart leafValue="30"/>
+<secondGateRange leafValue="5"/>
+<secondGateAmplitude leafValue="25"/>
+<rangePathWizard leafValue="0"/>
+<startPathWizard leafValue="0"/>
+<wizardVelocity leafValue="0"/>
+<gainWizard leafValue="0"/>
+<velocityCalibrationStatus ver="2" leafValue="None"/>
+</velocityWizard><tcg><wizardType ver="2" leafValue="Manual"/>
+<reflectorType leafValue="Depth SDH"/>
+<active leafValue="false"/>
+<calGain leafValue="0"/>
+<hidden leafValue="false"/>
+<interpolate leafValue="false"/>
+<refTolerance leafValue="10"/>
+<constantGainSlope leafValue="0.01"/>
+<calStatus ver="2" leafValue="None"/>
+<reflectorFirstDepth leafValue="10"/>
+<reflectorInterval leafValue="10"/>
+<reflectorDepthTolerance leafValue="5"/>
+</tcg><tcgCurveList ver="2"><settings startangle="0" stoppath="44.1255699174232" startpath="26.505" nbsample="300" stopangle="0" nbfl="1"/>
+</tcgCurveList><dacCalStatus ver="2" leafValue="None"/>
+<dacCurveList ver="2"><settings startangle="0" stoppath="44.1255699174232" startpath="26.505" nbsample="300" stopangle="0" nbfl="1"/>
+</dacCurveList><delayOffset leafValue="7"/>
+<dgsActive leafValue="false"/>
+<dgsAlarmActive leafValue="false"/>
+<dgsInterpolate leafValue="false"/>
+<dgsRefGain leafValue="0"/>
+<dgsTbVel leafValue="3.23"/>
+<dgsTbAtt leafValue="0"/>
+<dgsProbeSensitivity leafValue="0"/>
+<dgsDVK leafValue="0"/>
+<dgsNFL leafValue="30"/>
+<dgsRefType leafValue="Back Wall"/>
+<dgsTolerance><DGSTolerance1/>
+<DGSTolerance2/>
+<DGSTolerance3/>
+</dgsTolerance><dgsCalStatus ver="2" leafValue="None"/>
+<dgsCurveList ver="2"><settings startangle="0" stoppath="44.1255699174232" startpath="26.505" nbsample="300" stopangle="0" nbfl="1"/>
+</dgsCurveList><addtCalStatus ver="2" leafValue="None"/>
+<addtDepthReference leafValue="28.8"/>
+<lateralWavePosition><realLeaf leafValue="0"/>
+</lateralWavePosition><activateStraightening leafValue="false"/>
+<lwRemovalActive leafValue="false"/>
+<lWRemovalIndicators leafValue="false"/>
+<lwRemovalThreshold leafValue="90"/>
+<lwRemovalZoneStart leafValue="8.98474576271186"/>
+<lwRemovalZoneRange leafValue="0"/>
+</config_Scan196></scans></config>

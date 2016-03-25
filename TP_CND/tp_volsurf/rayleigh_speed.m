@@ -21,6 +21,7 @@
 %  0. You just DO WHAT THE FUCK YOU WANT TO.
 %
 
+graphics_toolkit('gnuplot')
 clear all;
 close all;
 
@@ -50,26 +51,19 @@ plot(timevector, timeserie/max(timeserie), 'LineWidth', 1.1);
 ylim([-1.2 1.2]);
 
 grid on;
-title(['Incidence Normale , TOF= ' num2str(tof) 's'])
-ylabel('Amplitude Normalisee')
-xlabel('Temps (us)')
-
-
-grid on;
 title(['Rayleigh en mode echo , TOF= ' num2str(tof*1e6) 'us'])
 ylabel('Amplitude Normalisee')
 xlabel('Temps (us)')
 
 print('-dpng', 'figures_out/DS0008_rayleigh_echo.png');
 
-
 % Error computation
 distance = 5.7e-2;
 measured_speed= distance/tof;
 relative_err = abs(measured_speed-plate.vR)/plate.vR*100;
 
-disp(['Measured plate Rayleigh wave speed : ' num2str(measured_speed) 'm']);
-disp(['Error on plate thickness : ' num2str(relative_err) '%']);
+disp(['Measured Rayleigh wave speed : ' num2str(measured_speed) 'm']);
+disp(['Error on wave speed : ' num2str(relative_err) '%']);
 
 
 

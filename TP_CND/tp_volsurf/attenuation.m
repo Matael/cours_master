@@ -1,5 +1,5 @@
 %
-% plaque_saine.m
+% attenuation.m
 %
 % Copyright (C) 2016 Mathieu Gaborit (matael) <mathieu@matael.org>
 %
@@ -21,31 +21,32 @@
 %  0. You just DO WHAT THE FUCK YOU WANT TO.
 %
 
-clear all;
-close all;
+function [attenuation]=attenuation(filename, SP)
 
-filename = 'MESSAINE_matlab.csv';
-% filename = 'MES_PUBSAIN_matlab.csv';
-% filename = 'MESPUB_CLOSESAIN_matlab.csv';
-
-SF = 200e6;
-
-% toffset = 11.8e-6;
-toffset = 11.4e-6;
-
-measdata = load(['newmesures2/' filename])';
-timevector = fliplr((0:(size(measdata)(1)-1))/SF)+toffset;
-xvector = (0:(size(measdata)(2)-1));
-
-colormap('gray')
-imagesc(xvector,timevector*1e6,flipud(measdata));
-ylim([toffset max(timevector)]*1e6)
-xlim([0 200])
-axis('ydirection', 'ij')
-
-title('')
-xlabel('Distance from origin (mm)')
-ylabel('TOF (us)')
+	[trace, t_v, fh] = display_trace(filename,SP);
+	figure(fh);
 
 
-print('-dpng', 'figures_out/bscan_plaque_saine.png')
+	if (nargin<2)
+		SP = 2e-8; % sampling period
+	end
+
+	number_of_peaks = input('How many peaks to include ? ');
+
+	x = ginput(number_of_peaks*2);
+	idx = sort(floor(x));
+
+	peaks_indexes = zeros(number_of_peaks,1);
+	for i=0:number_of_peaks-1
+		[_, peak_idx] = max(trace(idx(2*i+1):idx(2*i+2)));
+		peaks_indexes(i+1) = idx(2*i+1)+peak_idx;
+	end
+
+	attenuation = polyfit(t_v(peaks_indexes)', log(trace(peaks_indexes)), 1)
+	hold on;
+	plot(t_v, exp(attenuation(1).*t_v), 'r', 'LineWidth', 1.5);
+end
+
+
+
+

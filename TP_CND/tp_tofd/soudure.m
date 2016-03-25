@@ -24,9 +24,7 @@
 clear all;
 close all;
 
-filename = 'MESSAINE_matlab.csv';
-% filename = 'MES_PUBSAIN_matlab.csv';
-% filename = 'MESPUB_CLOSESAIN_matlab.csv';
+filename = 'MESWELD_N_matlab.csv';
 
 SF = 200e6;
 
@@ -40,12 +38,23 @@ xvector = (0:(size(measdata)(2)-1));
 colormap('gray')
 imagesc(xvector,timevector*1e6,flipud(measdata));
 ylim([toffset max(timevector)]*1e6)
-xlim([0 200])
-axis('ydirection', 'ij')
+xlim([0 250])
+axis('ij')
 
 title('')
 xlabel('Distance from origin (mm)')
 ylabel('TOF (us)')
 
+% draw circles
+x = ginput(3);
 
-print('-dpng', 'figures_out/bscan_plaque_saine.png')
+hold on;
+for ii=1:3;
+	a = axis();
+	plot([1 1]*x(ii), a(3:4), 'r', 'LineWidth', 2);
+	text(x(ii)-5, 13.2, ['x=' num2str(floor(x(ii)))], 'rotation', 90, 'color', 'r', 'fontsize', 30)
+end
+
+
+
+print('-dpng', 'figures_out/soudure.png')

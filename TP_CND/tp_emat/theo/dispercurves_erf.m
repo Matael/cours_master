@@ -11,8 +11,7 @@
 %
 % This program is distributed in the hope that it will be useful,
 % but WITHOUT ANY WARRANTY; without even the implied warranty of
-% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-% GNU General Public License for more details.
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the % GNU General Public License for more details.
 %
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
@@ -66,15 +65,14 @@ function figh=dispercurves(h, vL, vT, f_v)
 	figh = figure;
 
 	vphi = w./kx;
-%	vg = -gradient(vphi);
 	contour(f*h, vphi, sym, isoline, 'b', 'LineWidth', 2);
 	hold on;
 	contour(f*h, vphi, antisym, isoline, 'r', 'LineWidth', 2);
 
 	% legend('Sym', 'AntiSym', 'location', 'southeast')
 
-	xlabel('f.h en MHz.mm');
-	ylabel('v_\Phi (mm/\mµ s)');
+	xlabel('f.h');
+	ylabel('v_\Phi (mm/µs)');
 
 	% % tracé des VL et VT
 	% % TODO

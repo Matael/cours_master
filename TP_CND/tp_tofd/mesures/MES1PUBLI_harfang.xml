@@ -1,0 +1,192 @@
+<!DOCTYPE HarfangParameters>
+<config ver="2"><productId leafValue="prisma"/>
+<part ver="3"><material leafValue="Steel"/>
+<component leafValue=""/>
+<partSerialNumber leafValue=""/>
+<locationRef leafValue=""/>
+<longWaveVelocity leafValue="5.9"/>
+<shearWaveVelocity leafValue="3.2"/>
+<thickness leafValue="20"/>
+<haz leafValue="5"/>
+<calBlockType leafValue=""/>
+<calBlockSerial leafValue=""/>
+<dgsMatAtt leafValue="0"/>
+<partGeometry leafValue="Plate"/>
+<streamDirection leafValue="Up Stream"/>
+<radius leafValue="100"/>
+<weld><config_Weld193 class="config::Weld"><direction leafValue="Axial"/>
+</config_Weld193></weld></part><encoders><name leafValue=""/>
+<setup leafValue="Scan Axis Only"/>
+<scanAxis ver="3"><type leafValue="Quadrature"/>
+<resolution leafValue="14"/>
+<axisName leafValue=""/>
+<start leafValue="0"/>
+<step leafValue="1"/>
+<distance leafValue="100"/>
+<coverage leafValue="Spots"/>
+<invert leafValue="false"/>
+<resetPositionTo leafValue="0"/>
+</scanAxis><eaCLpos leafValue="0"/>
+<eaCLoffset leafValue="0"/>
+<eaRotation leafValue="0"/>
+</encoders><probes ver="2"><config_Probe194 class="config::ProbeMonoCircular" ver="4"><isMonoDualCrystal leafValue="false"/>
+<connector leafValue="Ch. A TX/RX"/>
+<manufacturer leafValue="OLYMPUS"/>
+<frequency leafValue="10000000"/>
+<model leafValue="C544SM"/>
+<serial leafValue="SN941635"/>
+<lastCalibration leafValue=""/>
+<pulseType leafValue="Square-Wave"/>
+<pulseWidth leafValue="0.05"/>
+<elementSizeDim1 leafValue="6.5"/>
+<elementActMask ver="2">11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111</elementActMask><wedgePos ver="2"><masterProbeName leafValue=""/>
+<slavePositionMode leafValue="Facing"/>
+<indexOffset leafValue="-18"/>
+<scanOffset leafValue="0"/>
+<rotationZ leafValue="90"/>
+</wedgePos><wedge><config_Wedge195 class="config::WedgeAngular" ver="3"><manufacturer leafValue="OLYMPUS"/>
+<model leafValue="ST170LIHC"/>
+<serial leafValue=""/>
+<customizeWedge leafValue="false"/>
+<lwVelocity leafValue="2.33"/>
+<waveMode leafValue="LW Velocity"/>
+<contactSurface leafValue="Planar"/>
+<radius leafValue="100"/>
+<length leafValue="16"/>
+<cutAngle leafValue="21.783408361294"/>
+<probeCenterFromBack leafValue="5.41809664727406"/>
+</config_Wedge195></wedge></config_Probe194><config_Probe213 class="config::ProbeMonoCircular" ver="4"><isMonoDualCrystal leafValue="false"/>
+<connector leafValue="Ch. A RX"/>
+<manufacturer leafValue="OLYMPUS"/>
+<frequency leafValue="10000000"/>
+<model leafValue="C544SM"/>
+<serial leafValue="SN941635"/>
+<lastCalibration leafValue=""/>
+<pulseType leafValue="Square-Wave"/>
+<pulseWidth leafValue="0.05"/>
+<elementSizeDim1 leafValue="6.5"/>
+<elementActMask ver="2">11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111</elementActMask><wedgePos ver="2"><masterProbeName leafValue="config_Probe194"/>
+<slavePositionMode leafValue="Facing"/>
+<indexOffset leafValue="54"/>
+<scanOffset leafValue="0"/>
+<rotationZ leafValue="270"/>
+</wedgePos><wedge><config_Wedge195 class="config::WedgeAngular" ver="3"><manufacturer leafValue="OLYMPUS"/>
+<model leafValue="ST170LIHC"/>
+<serial leafValue=""/>
+<customizeWedge leafValue="false"/>
+<lwVelocity leafValue="2.33"/>
+<waveMode leafValue="LW Velocity"/>
+<contactSurface leafValue="Planar"/>
+<radius leafValue="100"/>
+<length leafValue="16"/>
+<cutAngle leafValue="21.783408361294"/>
+<probeCenterFromBack leafValue="5.41809664727406"/>
+</config_Wedge195></wedge></config_Probe213></probes><inspection ver="2"><jobCustomerName leafValue=""/>
+<site leafValue=""/>
+<operatorName leafValue=""/>
+<operatorQualification leafValue=""/>
+<procedureRef leafValue=""/>
+<couplantName leafValue=""/>
+<voltageMono leafValue="200"/>
+<deviceFeaturesSelections><damping leafValue="_50_OHM"/>
+</deviceFeaturesSelections><gateAlarmState leafValue="Off"/>
+<encodedAxisReference leafValue="Wedge Reference"/>
+<bondingRatioReference leafValue="50"/>
+<annotationMinDepth leafValue="0"/>
+<annotationMaxDepth leafValue="15"/>
+<annotationDefectAmplDef leafValue="Percent"/>
+<annotationMinAmpl leafValue="0"/>
+<annotationMaxAmpl leafValue="200"/>
+<annotationAmplAbsolute leafValue="false"/>
+<annotationdbAtt leafValue="50.1187233627272"/>
+<annotationDbInverted leafValue="false"/>
+<lockSetup leafValue="false"/>
+<shortMenu leafValue="false"/>
+<measurementBarItem><Measure1><select ver="2" leafValue="config_Scan196_Gain"/>
+</Measure1><Measure2><select ver="2" leafValue="G1peakAmp"/>
+</Measure2><Measure3><select ver="2" leafValue="G1peakSurface"/>
+</Measure3><Measure4><select ver="2" leafValue="H1-H2distDepthCorr"/>
+</Measure4><Measure5><select ver="2" leafValue="H1-H2distScan"/>
+</Measure5></measurementBarItem></inspection><referencesAScansList/>
+<scans><config_Scan196 class="config::TOFD" ver="7"><signalReprocessing leafValue="Averaging"/>
+<signalReprocessingQty leafValue="8"/>
+<probeNameTx leafValue="config_Probe194"/>
+<probeNameRx leafValue="config_Probe213"/>
+<acquisitionFreqSelect leafValue="200 MHz"/>
+<waveMode leafValue="LW Velocity"/>
+<dacOrTcgSelection leafValue="Disabled"/>
+<dacActive leafValue="false"/>
+<dacAlarmActive leafValue="false"/>
+<dacInterpolate leafValue="false"/>
+<dacRefGain leafValue="0"/>
+<dacTolerance><DacTolerance1/>
+<DacTolerance2/>
+<DacTolerance3/>
+</dacTolerance><filtersSelections><digitalFir ver="2" leafValue="auto"><autoSelected leafValue="_10.0_MHz"/>
+</digitalFir><analog ver="2" leafValue="auto"><autoSelected leafValue="wider"/>
+</analog></filtersSelections><gainRef leafValue="0"/>
+<gain leafValue="85"/>
+<refAmplitude leafValue="80"/>
+<prf leafValue="1000"/>
+<rejectMode leafValue="Disabled"/>
+<scaling leafValue="true"/>
+<startPath leafValue="26.505"/>
+<rangePath leafValue="17.6205699174232"/>
+<subSamplingSelector leafValue="Auto"/>
+<translate leafValue="0"/>
+<velocityWizard><type leafValue="Depth SDH"/>
+<firstReflector leafValue="50"/>
+<secondReflector leafValue="100"/>
+<firstGateStart leafValue="10"/>
+<firstGateRange leafValue="5"/>
+<firstGateAmplitude leafValue="25"/>
+<secondGateStart leafValue="30"/>
+<secondGateRange leafValue="5"/>
+<secondGateAmplitude leafValue="25"/>
+<rangePathWizard leafValue="0"/>
+<startPathWizard leafValue="0"/>
+<wizardVelocity leafValue="0"/>
+<gainWizard leafValue="0"/>
+<velocityCalibrationStatus ver="2" leafValue="None"/>
+</velocityWizard><tcg><wizardType ver="2" leafValue="Manual"/>
+<reflectorType leafValue="Depth SDH"/>
+<active leafValue="false"/>
+<calGain leafValue="0"/>
+<hidden leafValue="false"/>
+<interpolate leafValue="false"/>
+<refTolerance leafValue="10"/>
+<constantGainSlope leafValue="0.01"/>
+<calStatus ver="2" leafValue="None"/>
+<reflectorFirstDepth leafValue="10"/>
+<reflectorInterval leafValue="10"/>
+<reflectorDepthTolerance leafValue="5"/>
+</tcg><tcgCurveList ver="2"><settings startangle="0" stoppath="44.1255699174232" startpath="26.505" nbsample="300" stopangle="0" nbfl="1"/>
+</tcgCurveList><dacCalStatus ver="2" leafValue="None"/>
+<dacCurveList ver="2"><settings startangle="0" stoppath="44.1255699174232" startpath="26.505" nbsample="300" stopangle="0" nbfl="1"/>
+</dacCurveList><delayOffset leafValue="7"/>
+<dgsActive leafValue="false"/>
+<dgsAlarmActive leafValue="false"/>
+<dgsInterpolate leafValue="false"/>
+<dgsRefGain leafValue="0"/>
+<dgsTbVel leafValue="3.23"/>
+<dgsTbAtt leafValue="0"/>
+<dgsProbeSensitivity leafValue="0"/>
+<dgsDVK leafValue="0"/>
+<dgsNFL leafValue="30"/>
+<dgsRefType leafValue="Back Wall"/>
+<dgsTolerance><DGSTolerance1/>
+<DGSTolerance2/>
+<DGSTolerance3/>
+</dgsTolerance><dgsCalStatus ver="2" leafValue="None"/>
+<dgsCurveList ver="2"><settings startangle="0" stoppath="44.1255699174232" startpath="26.505" nbsample="300" stopangle="0" nbfl="1"/>
+</dgsCurveList><addtCalStatus ver="2" leafValue="None"/>
+<addtDepthReference leafValue="28.8"/>
+<lateralWavePosition><realLeaf leafValue="0"/>
+</lateralWavePosition><activateStraightening leafValue="false"/>
+<lwRemovalActive leafValue="false"/>
+<lWRemovalIndicators leafValue="false"/>
+<lwRemovalThreshold leafValue="90"/>
+<lwRemovalZoneStart leafValue="8.98474576271186"/>
+<lwRemovalZoneRange leafValue="0"/>
+</config_Scan196></scans></config>
+

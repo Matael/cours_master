@@ -1,5 +1,5 @@
 %
-% plaque_saine.m
+% compare_rayleigh_leaky_normal.m
 %
 % Copyright (C) 2016 Mathieu Gaborit (matael) <mathieu@matael.org>
 %
@@ -24,28 +24,30 @@
 clear all;
 close all;
 
-filename = 'MESSAINE_matlab.csv';
-% filename = 'MES_PUBSAIN_matlab.csv';
-% filename = 'MESPUB_CLOSESAIN_matlab.csv';
+SP = 2e-8;
+leaky_fn = 'DS0009_matlab.CSV';
+normal_fn = 'DS0008_matlab.CSV';
 
-SF = 200e6;
+leaky_data = load(['mesures/' leaky_fn]);
+normal_data = load(['mesures/' normal_fn]);
 
-% toffset = 11.8e-6;
-toffset = 11.4e-6;
+maxi = max(max(leaky_data),max(normal_data));
+leaky_data = (leaky_data-mean(leaky_data))/maxi;
+normal_data = (normal_data - mean(normal_data))/maxi;
 
-measdata = load(['newmesures2/' filename])';
-timevector = fliplr((0:(size(measdata)(1)-1))/SF)+toffset;
-xvector = (0:(size(measdata)(2)-1));
+time_vector = (0:length(leaky_data)-1)*SP*1e6;
 
-colormap('gray')
-imagesc(xvector,timevector*1e6,flipud(measdata));
-ylim([toffset max(timevector)]*1e6)
-xlim([0 200])
-axis('ydirection', 'ij')
+figure;
+plot(time_vector, leaky_data, 'r', 'LineWidth', 1.5);
+hold on;
+plot(time_vector, normal_data, 'b', 'LineWidth', 1.5);
 
-title('')
-xlabel('Distance from origin (mm)')
-ylabel('TOF (us)')
+xlim([50 67]);
+grid on;
+xlabel('Temps (us)');
+ylabel('Amplitude Normalisee')
+legend('Leaky Rayleigh', 'Rayleigh')
 
 
-print('-dpng', 'figures_out/bscan_plaque_saine.png')
+
+
