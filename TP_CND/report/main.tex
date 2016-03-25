@@ -1,0 +1,227 @@
+\documentclass[a4paper, 10pt, twocolumn]{report}
+
+    % preambule {{{
+
+    % TODOS
+    \usepackage[colorinlistoftodos]{todonotes}
+
+    \usepackage[utf8]{inputenc}
+		\usepackage[T1]{fontenc}
+		\usepackage[french]{babel}
+		\usepackage[most]{tcolorbox}
+		\usepackage{xcolor}
+
+
+		\usepackage[utf8]{inputenc}
+		\usepackage[T1]{fontenc}
+    \usepackage[french]{babel}
+    \usepackage{textcomp}
+		\usepackage{multirow}
+		\usepackage[top=3cm,left=2.5cm,right=2.5cm,bottom=2cm]{geometry}
+    \usepackage{lmodern}
+    \usepackage{sectsty}
+    \usepackage{nicefrac}
+		\usepackage{graphicx}
+    \usepackage{lastpage}
+    \usepackage{fancyhdr}
+    \usepackage{amsmath}
+    \usepackage{amssymb}
+    \usepackage{amsfonts}
+    \usepackage{capt-of}
+    \usepackage{multicol}
+    \usepackage{caption}
+    \usepackage{tikz}
+    \usetikzlibrary{arrows}
+    \usepackage{xcolor}
+
+		\usepackage[backend=biber,isbn=false,url=false,doi=false,hyperref=true,style=numeric-comp]{biblatex}
+		\usepackage{hyperref}
+		\usepackage{fontspec}
+		\usepackage{csquotes}
+
+		\addbibresource{TOFD.bib}
+		\addbibresource{EMAT.bib}
+		\addbibresource{VolSurf.bib}
+		\AtEveryCitekey{%
+			\clearfield{url}%
+			\clearfield{file}%
+			\clearfield{urlyear}%
+		}
+
+    \newcommand\fanon[1]{\textcolor{red}{#1}}
+    \newcommand\mathieu[1]{\textcolor{blue}{#1}}
+
+	% fonts
+	\usepackage{fontspec}
+	\setmainfont{FiraSans-Regular.otf}[
+		Path 	       = ./font/,
+		BoldFont       = FiraSans-Bold.otf ,
+		ItalicFont     = FiraSans-Italic.otf ,
+		BoldItalicFont = FiraSans-BoldItalic.otf ]
+
+
+
+    \usepackage{fixltx2e}
+    \usepackage{dblfloatfix}
+
+    \usepackage{colortbl}
+    \newcommand\vv{\mathbf}
+    \renewcommand\phi{\varphi}
+
+    \usepackage{subcaption}
+
+    \usepackage{fancyvrb} % pour forcer les verbatim sur une seule page
+    \usepackage{url}
+
+	\title{Contrôle et Evalution Non-Destructif}
+	\author{Mathieu \textsc{Gaborit} -- Fanon \textsc{Julienne} \hfill Encadrant : Mourad \textsc{Bentahar}}
+	\date{M2 Acoustique
+    \vskip 1cm
+    Année universitaire 2015-2016}
+
+	\makeatletter
+	\def\thetitle{\@title}
+	\def\theauthor{\@author}
+	\def\thedate{\@date}
+	% Figures within a column...
+    \newenvironment{tablehere}
+    {\def\@captype{table}}
+    {}
+    \newenvironment{figurehere}
+    {\def\@captype{figure}}
+    {}
+	\makeatother
+	% for floated 2 column equations
+    \newcounter{tempEquationCounter}
+    \newcounter{thisEquationNumber}
+    \newenvironment{floatEq}
+    {\setcounter{thisEquationNumber}{\value{equation}}\addtocounter{equation}{1}% record equation as happened and remember number
+    \begin{figure*}[!t]% float following equation across columns
+    \normalsize\setcounter{tempEquationCounter}{\value{equation}}% record current equation number in floated location
+    \setcounter{equation}{\value{thisEquationNumber}}% use previous equation number
+    }
+    {\setcounter{equation}{\value{tempEquationCounter}}% set back to equation number in floated location
+    \hrulefill\vspace*{4pt}% add a horizontal rule separator
+    \end{figure*}% end float environment
+
+    }
+
+
+
+    % interligne
+    \renewcommand{\baselinestretch}{1.1}
+
+    \setcounter{secnumdepth}{5}
+    \addto\captionsfrench{\renewcommand{\chaptername}{TP}}
+    \renewcommand{\thechapter}{\arabic{chapter}}
+    \renewcommand{\thesection}{\Roman{section}.}
+    \renewcommand{\thesubsection}{\Alph{subsection})}
+    \renewcommand{\thesubsubsection}{\alph{subsubsection})}
+	\renewcommand{\theparagraph}{}
+
+	\newcommand\matlab{MATLab\textsuperscript{\textregistered}}
+    %\renewcommand\vec{\overrightarrow}
+    \renewcommand\equiv{\Leftrightarrow}
+
+    \pagestyle{fancy}
+
+    \fancypagestyle{plain}{%
+        \fancyhf{} % clear all header and footer fields
+        \fancyfoot[L]{\textsc{Gaborit -- Julienne}}
+        \fancyfoot[C]{}
+        \fancyfoot[R]{\thepage/\pageref{LastPage}}
+        \renewcommand{\headrulewidth}{0pt}
+        \renewcommand{\footrulewidth}{.4pt}
+    }
+
+
+    \renewcommand{\headrulewidth}{0pt}
+    \renewcommand{\footrulewidth}{.4pt}
+    \lhead{}
+    \chead{}
+    \rhead{}
+    \lfoot{\textsc{Gaborit -- Julienne}}
+    \cfoot{}
+    \rfoot{\thepage/\pageref{LastPage}}
+
+    % }}}
+\begin{document}
+
+
+% page de titre [PAS TOUCHE] {{{1
+\begin{titlepage}
+
+% logo Univ
+\begin{flushright}
+\includegraphics[width=4cm]{logo.png}
+\end{flushright}
+
+
+\vskip 6cm
+
+% Titre
+\begin{flushleft}
+\huge{\textbf{\thetitle}}
+\vskip .5cm
+\hrule height 3pt
+\vskip .5cm
+\huge{\textbf{}}
+\end{flushleft}
+
+\vfill
+
+\begin{center}
+\Large{
+\thedate
+}
+\end{center}
+
+\vskip 1cm
+\hrule height .5pt
+\vskip 1cm
+
+\begin{flushleft}
+\theauthor
+\end{flushleft}
+
+\end{titlepage}
+
+
+% sommaire [PAS TOUCHE] {{{1
+\renewcommand{\contentsname}{Sommaire
+\vskip .5cm
+\hrule height .5pt}
+\tableofcontents
+%\listoftodos
+
+\newpage
+
+\onecolumn
+\include{disclaimer}
+
+\twocolumn
+\newpage
+% Chapitres {{{1
+\part{Caractérisation par méthode TOFD}
+\setcounter{section}{0}
+\input{tofd.tex}
+
+\part{Ondes de Lamb \& Transducteurs EMAT}
+\setcounter{section}{0}
+\input{emat.tex}
+
+\part{Ondes de Volumes/Ondes de Surface}
+\setcounter{section}{0}
+\input{volume_surface.tex}
+
+\part{Imagerie ultrasonore multi-éléments}
+\setcounter{section}{0}
+\input{multielements.tex}
+
+
+\newpage
+\printbibliography
+
+%\appendix
+%\input{annexes.tex}
+\end{document}

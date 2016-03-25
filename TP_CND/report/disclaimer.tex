@@ -1,0 +1,19 @@
+Au cours de ces 4 séances de travaux pratiques, du matériel de classe industrielle était à disposition.
+
+Ces outils de mesure sont livrés, le plus souvent, avec un logiciel qui permet le post-traitement et l'analyse des données.
+
+Ces logiciels sont payants et propriétaires : nous ne pouvions en disposer chez nous.
+
+Le choix, fait dès le début, a été de favoriser le traitement de données brutes plutôt que l'utilisation de copies d'écran. Ce choix, s'est avéré plus tard (mais trop tard) très mauvais et, péchant par excès de zèle, nous n'avons parfois pas étés en mesure d'analyser les données récoltées.
+
+Les données étaient, au mieux, exportées depuis les logiciels sus-mentionnés, sous forme de fichiers CSV ensuite traités sous GNU/Octave ou Python. L'export entraînait systématiquement la perte de précieuses méta-données qu'il a souvent été difficile de retrouver.
+
+On pourra mettre en évidence la possibilité d'une telle récupération par analyse des fichiers UTData fournis et notamment des composantes textuelles de ces fichiers : un ou plusieurs documents XML sont en effet inclus et reprennent une bonne partie des paramètres de l'analyse.
+
+Les fichiers \texttt{.dat} générés par le système EMAT resteront toutefois un mystère et aucune mesure n'est présentée pour ce TP. Le fichier est un binaire de taille conséquente que nous avons entrepris d'analyser en parallèle des autres séances de TP. Une attaque fréquentielle sur le binaire a permis d'obtenir des informations, une visualisation du flux binaire a permis ensuite la détection de formes temporelles mais devant l'ampleur du travail a accomplir, nous avons jeté l'éponge.
+
+Cette note n'est pas une plainte mais un constat : les techniques de CND requièrent du matériel de pointe et les entreprises le commercialisant font fructifier leur connaissance du produit en ne fournissant pas les documentations qu'on est en droit d'attendre et en vendant à prix d'or les logiciels d'analyse.
+
+Ce comportement, au delà de tout ce qu'il a de dangereux dans le cadre technique (méconnaissance des traitements effectués sur les données, mauvaise compréhension des limitations du logiciel, etc...), vient aussi à l'encontre de la pensée scientifique qui se doit d'être ouverte et transparente.
+
+Il est a souhaiter que dans les années à venir un effort de standardisation sera effectué (par exemple \textit{via} l'utilisation du format HDF pour les données de mesure) mais les intérêts économiques sont tels que cela reste peu probable.
